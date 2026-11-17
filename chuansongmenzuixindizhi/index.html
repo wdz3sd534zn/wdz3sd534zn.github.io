@@ -1,0 +1,1373 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>传送门最新地址发布页-备用入口与访问指南</title>
+<meta name="description" content="传送门最新地址发布页汇总当前可用的备用入口与访问方法，含地址变更说明、域名切换记录、常见打不开原因、客户端与镜像站使用要点，方便随时找到能打开的门户。">
+<meta name="keywords" content="传送门最新地址发布页">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2c3f'/%3E%3Cpath d='M14 44h36M14 32h24M14 20h16' stroke='%2336c2a2' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='48' cy='20' r='6' fill='%23f2b53a'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "传送门最新地址发布页",
+  "inLanguage": "zh-CN",
+  "description": "汇总备用入口、地址变更记录与访问方法的中文导航页",
+  "dateModified": "2026-11-08"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "传送门最新地址发布页打不开是域名被屏蔽吗",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多数情况是本地运营商解析被拦截或 DNS 缓存未刷新。11 月 5 日主域名 dmp-01 在部分省份解析超时，改用备用域名 dmp-07 后恢复；先换 DNS 再换域名，能定位是本地网络还是域名本身的问题。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "备用入口和镜像站有什么区别",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "备用入口与原站共用同一后台数据，只是入口域名不同；镜像站是第三方复刻的静态导航，更新常滞后 6 到 24 小时，登录态也不互通，提交账号密码前要看清域名归属。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "发布页的地址列表多久同步一次",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "地址列表在每天 09:00 与 21:00 各核对一次，遇域名失效会临时加更。2026 年 10 月至 11 月 8 日共记录 9 次切换，平均间隔 4.2 天，最近一次是 11 月 6 日 22:15 切换至 dmp-07。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手机端访问地址页要注意什么",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "部分安卓浏览器会把新域名识别为风险页面并折叠跳转按钮，需手动点“继续访问”。iOS 端在 Safari 隐私模式下不保留登录态，退出后要重新验证，建议改用普通模式或桌面端。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "订阅地址更新提醒有哪几种方式",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "目前提供邮件订阅、RSS 与 Telegram 频道三种。邮件在变更后 15 分钟内发出，RSS 每小时抓取一次，Telegram 频道 @dmp_status 实时推送，历史消息可回溯到 2026 年 8 月。"
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#132430;
+  --ink-2:#3a515f;
+  --ink-3:#6b8291;
+  --paper:#f5f7f6;
+  --card:#ffffff;
+  --line:#dce5e3;
+  --brand:#0f2c3f;
+  --brand-2:#17566e;
+  --accent:#36c2a2;
+  --accent-soft:#e2f5ef;
+  --warn:#f2b53a;
+  --warn-soft:#fdf3dd;
+  --danger:#c4553f;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 1px 2px rgba(19,36,48,.06),0 8px 24px -12px rgba(19,36,48,.18);
+  --shadow-lg:0 12px 36px -16px rgba(19,36,48,.35);
+  --sp:clamp(14px,2.2vw,22px);
+  --gap:clamp(14px,1.8vw,22px);
+  --font:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --fs-h1:clamp(1.7rem,3.6vw,2.65rem);
+  --fs-h2:clamp(1.22rem,2vw,1.5rem);
+  --fs-h3:1.05rem;
+  --fs-body:.955rem;
+  --fs-sm:.845rem;
+  --fs-xs:.775rem;
+  --sticky-h:98px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--sticky-h)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+body{
+  margin:0;font-family:var(--font);background:var(--paper);color:var(--ink);
+  font-size:var(--fs-body);line-height:1.78;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--brand-2);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{line-height:1.32;margin:0;color:var(--ink);font-weight:700}
+p{margin:0 0 .85em}
+ul,ol{margin:0 0 .85em;padding-left:1.2em}
+li{margin-bottom:.3em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* ============ 吸顶区 ============ */
+.sticky-zone{
+  position:sticky;top:0;z-index:60;
+}
+.notice{
+  background:linear-gradient(90deg,#0f2c3f,#17566e 70%,#1b6a72);
+  color:#e8f4f1;font-size:var(--fs-sm);
+  padding:7px 0;
+}
+.notice-in{
+  max-width:1180px;margin:0 auto;padding:0 var(--sp);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.notice .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--warn);
+  box-shadow:0 0 0 3px rgba(242,181,58,.25);flex:none;
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.notice b{color:#fff;font-weight:600}
+.notice .tag{
+  background:rgba(255,255,255,.14);padding:1px 8px;border-radius:999px;
+  font-size:var(--fs-xs);letter-spacing:.02em;
+}
+.notice a{color:#a9ecdc;text-decoration:underline;text-underline-offset:2px}
+.notice .sep{opacity:.4}
+
+.site-header{
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 10px -8px rgba(19,36,48,.35);
+}
+.header-in{
+  max-width:1180px;margin:0 auto;padding:10px var(--sp);
+  display:flex;align-items:center;gap:18px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand-mark{width:38px;height:38px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.25}
+.brand-name{font-weight:800;font-size:1.02rem;color:var(--brand);letter-spacing:.01em}
+.brand-sub{font-size:var(--fs-xs);color:var(--ink-3);letter-spacing:.06em}
+.main-nav{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.main-nav a{
+  font-size:var(--fs-sm);color:var(--ink-2);padding:6px 9px;border-radius:var(--radius-sm);
+  white-space:nowrap;
+}
+.main-nav a:hover{background:var(--accent-soft);color:var(--brand);text-decoration:none}
+.main-nav a.is-active{background:var(--brand);color:#fff}
+.header-tools{display:flex;align-items:center;gap:8px;flex:none}
+.search-box{position:relative;display:flex;align-items:center}
+.search-box input{
+  width:158px;padding:7px 10px 7px 30px;border:1px solid var(--line);
+  border-radius:999px;font:inherit;font-size:var(--fs-sm);background:var(--paper);color:var(--ink);
+}
+.search-box input:focus{border-color:var(--accent);background:#fff}
+.search-box svg{position:absolute;left:10px;width:14px;height:14px;opacity:.55;pointer-events:none}
+.search-result{
+  position:absolute;top:calc(100% + 6px);right:0;width:270px;background:#fff;
+  border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);
+  padding:8px;display:none;z-index:80;max-height:280px;overflow:auto;
+}
+.search-result.show{display:block}
+.search-result a,.search-result .none{
+  display:block;padding:6px 8px;border-radius:6px;font-size:var(--fs-sm);color:var(--ink-2);
+}
+.search-result a:hover{background:var(--accent-soft);text-decoration:none}
+.search-result .none{color:var(--ink-3);cursor:default}
+.menu-btn{
+  display:none;border:1px solid var(--line);background:#fff;border-radius:var(--radius-sm);
+  width:36px;height:34px;align-items:center;justify-content:center;cursor:pointer;color:var(--brand);
+}
+.menu-btn svg{width:18px;height:18px}
+
+/* ============ 首屏 ============ */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 380px at 88% -10%,rgba(54,194,162,.20),transparent 65%),
+    radial-gradient(700px 340px at 4% 0%,rgba(23,86,110,.16),transparent 60%),
+    linear-gradient(160deg,#0e2a3b,#12394b 55%,#0f2c3f);
+  color:#e9f3f1;
+}
+.hero-in{
+  max-width:1180px;margin:0 auto;padding:var(--sp) var(--sp) 0;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+  gap:clamp(18px,3vw,44px);align-items:center;
+}
+.hero-copy{padding:clamp(18px,4vw,46px) 0}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);
+  border:1px solid rgba(169,236,220,.4);color:#a9ecdc;padding:4px 11px;border-radius:999px;
+  letter-spacing:.08em;margin-bottom:14px;background:rgba(255,255,255,.04);
+}
+.hero h1{
+  font-size:var(--fs-h1);color:#fff;letter-spacing:.01em;margin-bottom:14px;
+  text-shadow:0 2px 22px rgba(0,0,0,.28);
+}
+.hero-lead{
+  font-size:1rem;color:#c6dbd8;max-width:37em;line-height:1.85;margin-bottom:20px;
+}
+.hero-lead strong{color:#fff;font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:999px;
+  font-size:var(--fs-sm);font-weight:600;border:1px solid transparent;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;font-family:inherit;
+}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn-primary{background:var(--accent);color:#08302a;box-shadow:0 8px 20px -10px rgba(54,194,162,.9)}
+.btn-primary:hover{background:#45d6b5}
+.btn-ghost{background:transparent;color:#d6e8e4;border-color:rgba(214,232,228,.35)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:440px;
+  border-top:1px solid rgba(255,255,255,.14);padding-top:16px;
+}
+.hero-stat b{display:block;font-size:1.3rem;color:#fff;letter-spacing:.02em;line-height:1.2}
+.hero-stat span{font-size:var(--fs-xs);color:#9fbcba;display:block;margin-top:2px}
+.hero-visual{position:relative;padding:clamp(10px,2vw,26px) 0;min-height:300px}
+.hero-visual svg{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 30px rgba(0,0,0,.32))}
+.hero-visual .float-card{
+  position:absolute;background:rgba(255,255,255,.95);color:var(--ink);
+  border-radius:10px;padding:8px 12px;font-size:var(--fs-xs);box-shadow:var(--shadow-lg);
+  line-height:1.5;
+}
+.hero-visual .fc-1{right:2%;top:6%}
+.hero-visual .fc-2{left:0;bottom:12%}
+.hero-visual .fc-1 b,.hero-visual .fc-2 b{display:block;color:var(--brand);font-size:var(--fs-sm)}
+.hero-wave{display:block;width:100%;height:38px;margin-top:-1px}
+
+/* ============ 布局 ============ */
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--sp)}
+.layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;
+  gap:clamp(18px,2.6vw,34px);align-items:start;padding:clamp(24px,4vw,40px) 0 10px;
+}
+.section{margin-bottom:clamp(30px,4.4vw,48px);scroll-margin-top:var(--sticky-h)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.sec-head h2{font-size:var(--fs-h2)}
+.sec-head h2 .kicker{
+  display:block;font-size:var(--fs-xs);color:var(--accent);letter-spacing:.16em;
+  font-weight:700;margin-bottom:4px;
+}
+.sec-head .more{font-size:var(--fs-sm);color:var(--ink-3)}
+.sec-intro{font-size:var(--fs-sm);color:var(--ink-2);max-width:62em;margin:-6px 0 16px}
+.sec-intro b{color:var(--ink)}
+
+/* 概览面板 */
+.overview{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.ov-item{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 15px;box-shadow:var(--shadow);
+}
+.ov-item .n{font-size:1.45rem;font-weight:800;color:var(--brand);line-height:1.2}
+.ov-item .n small{font-size:.72rem;font-weight:600;color:var(--ink-3);margin-left:3px}
+.ov-item p{font-size:var(--fs-xs);color:var(--ink-2);margin:6px 0 0;line-height:1.6}
+.ov-item.accent{background:var(--accent-soft);border-color:#c3e9de}
+
+/* 卡片网格 */
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.card-thumb{aspect-ratio:16/9;position:relative;background:#dfe9e7;overflow:hidden}
+.card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.card:hover .card-thumb img{transform:scale(1.035)}
+.card-body{padding:13px 15px 15px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-tag{
+  align-self:flex-start;font-size:var(--fs-xs);color:var(--brand-2);background:var(--accent-soft);
+  padding:1px 8px;border-radius:999px;font-weight:600;
+}
+.card h3{font-size:var(--fs-h3)}
+.card p{font-size:var(--fs-sm);color:var(--ink-2);margin:0;line-height:1.68}
+.card-meta{font-size:var(--fs-xs);color:var(--ink-3);margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+/* 紧凑列表 */
+.tight-list{list-style:none;padding:0;margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.tight-list li{
+  display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline;
+  padding:11px 15px;border-bottom:1px solid var(--line);margin:0;font-size:var(--fs-sm);
+}
+.tight-list li:last-child{border-bottom:none}
+.tight-list li:hover{background:#fbfdfc}
+.tight-list .date{font-size:var(--fs-xs);color:var(--ink-3);font-variant-numeric:tabular-nums;min-width:74px}
+.tight-list .title{color:var(--ink)}
+.tight-list .title b{font-weight:600}
+.tight-list .lv{font-size:var(--fs-xs);color:var(--brand-2);background:var(--accent-soft);padding:0 7px;border-radius:999px;white-space:nowrap}
+
+/* 分类索引 */
+.cat-index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cat-item{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:11px 12px;display:block;transition:border-color .18s,background .18s;
+}
+.cat-item:hover{border-color:var(--accent);background:#fbfefd;text-decoration:none}
+.cat-item b{display:block;font-size:var(--fs-sm);color:var(--ink);margin-bottom:1px}
+.cat-item span{font-size:var(--fs-xs);color:var(--ink-3)}
+
+/* 标签索引 */
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-size:var(--fs-sm);background:#fff;border:1px solid var(--line);color:var(--ink-2);
+  padding:5px 12px;border-radius:999px;transition:all .18s ease;
+}
+.tag:hover{border-color:var(--accent);color:var(--brand);background:var(--accent-soft);text-decoration:none;transform:translateY(-1px)}
+.tag.hot{border-color:#f0d79c;background:var(--warn-soft);color:#8a6414}
+
+/* 深度解析 */
+.deep{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(18px,3vw,32px);box-shadow:var(--shadow);
+}
+.deep h3{font-size:1.08rem;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+.deep h3:first-of-type{margin-top:8px}
+.deep p{font-size:var(--fs-body);color:#28414e}
+.deep .verdict{
+  background:var(--brand);color:#e8f4f1;border-radius:var(--radius-sm);padding:15px 18px;margin:6px 0 20px;
+}
+.deep .verdict strong{color:var(--warn)}
+.deep blockquote{
+  margin:16px 0;padding:12px 16px;background:#f3f8f6;border-left:4px solid var(--brand-2);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:var(--fs-sm);color:var(--ink-2);
+}
+.deep table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:var(--fs-sm)}
+.deep th,.deep td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.deep th{background:#eef5f3;font-weight:600;color:var(--brand)}
+.deep td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* 步骤 */
+.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:10px}
+.steps li{
+  counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:13px;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;margin:0;
+}
+.steps li::before{
+  content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;
+  font-size:var(--fs-sm);font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;
+}
+.steps b{display:block;font-size:var(--fs-sm);color:var(--ink)}
+.steps span{font-size:var(--fs-xs);color:var(--ink-2);line-height:1.66}
+
+/* 对照面板 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+.compare .col{padding:15px 16px}
+.compare .col+.col{border-left:1px solid var(--line)}
+.compare .col-h{font-size:var(--fs-sm);font-weight:700;padding-bottom:8px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+.compare .col-h.ok{color:#177a5f}
+.compare .col-h.bad{color:var(--danger)}
+.compare ul{margin:0;padding-left:1.1em;font-size:var(--fs-xs);color:var(--ink-2);line-height:1.75}
+
+/* FAQ */
+.faq details{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);
+  margin-bottom:9px;overflow:hidden;
+}
+.faq details[open]{border-color:#bfe6db;box-shadow:var(--shadow)}
+.faq summary{
+  cursor:pointer;padding:12px 40px 12px 15px;font-weight:600;font-size:var(--fs-sm);
+  list-style:none;position:relative;color:var(--ink);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:15px;top:50%;transform:translateY(-50%);
+  color:var(--accent);font-size:1.15rem;font-weight:700;line-height:1;
+}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{background:#fafdfc}
+.faq .ans{padding:0 15px 14px;font-size:var(--fs-sm);color:var(--ink-2);line-height:1.78}
+
+/* 评论 */
+.comments{display:grid;gap:10px}
+.comment{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 15px;
+}
+.comment .who{display:flex;align-items:center;gap:8px;font-size:var(--fs-xs);color:var(--ink-3);margin-bottom:5px}
+.comment .avatar{
+  width:22px;height:22px;border-radius:50%;background:var(--brand-2);color:#fff;
+  font-size:.66rem;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none;
+}
+.comment .avatar.a2{background:#b3703b}
+.comment .avatar.a3{background:#4a7a9c}
+.comment .avatar.a4{background:#6a8f4a}
+.comment p{font-size:var(--fs-sm);margin:0;color:#2c4451;line-height:1.75}
+.comment .ref{color:var(--brand-2);border-bottom:1px dashed #a9c7cf}
+.comment .time{margin-left:auto}
+
+/* 时间线 */
+.timeline{list-style:none;padding:0;margin:0;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),#d7e9e4)}
+.timeline li{position:relative;padding-left:30px;margin-bottom:14px;font-size:var(--fs-sm)}
+.timeline li::before{
+  content:"";position:absolute;left:1px;top:7px;width:14px;height:14px;border-radius:50%;
+  background:#fff;border:3px solid var(--accent);
+}
+.timeline b{display:block;color:var(--ink);font-size:var(--fs-sm)}
+.timeline .t{font-size:var(--fs-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.timeline p{margin:2px 0 0;font-size:var(--fs-xs);color:var(--ink-2);line-height:1.7}
+
+/* 榜单 */
+.rank{list-style:none;padding:0;margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rank li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 15px;border-bottom:1px solid var(--line);margin:0;font-size:var(--fs-sm)}
+.rank li:last-child{border-bottom:none}
+.rank .no{font-weight:800;color:var(--ink-3);font-size:1rem;min-width:24px;font-variant-numeric:tabular-nums}
+.rank li:nth-child(1) .no{color:#c9901c}
+.rank li:nth-child(2) .no{color:#8c9aa4}
+.rank li:nth-child(3) .no{color:#b3703b}
+.rank .bar{height:6px;border-radius:3px;background:#eef3f2;overflow:hidden;width:90px}
+.rank .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#7fd8c4)}
+.rank .info b{display:block;font-weight:600}
+.rank .info span{font-size:var(--fs-xs);color:var(--ink-3)}
+
+/* 侧栏 */
+.sidebar{display:grid;gap:var(--gap);position:sticky;top:calc(var(--sticky-h) + 12px)}
+.side-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:15px 16px;box-shadow:var(--shadow);
+}
+.side-card h3{font-size:.95rem;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.side-nav{list-style:none;margin:0;padding:0;font-size:var(--fs-sm)}
+.side-nav li{margin:0}
+.side-nav a{
+  display:block;padding:6px 9px;border-radius:6px;color:var(--ink-2);border-left:3px solid transparent;
+  transition:background .15s,color .15s;font-size:var(--fs-sm);
+}
+.side-nav a:hover{background:#f4faf8;text-decoration:none;color:var(--brand)}
+.side-nav a.is-current{background:var(--accent-soft);color:var(--brand);border-left-color:var(--accent);font-weight:600}
+.side-mini{list-style:none;padding:0;margin:0;font-size:var(--fs-xs)}
+.side-mini li{padding:7px 0;border-bottom:1px dashed var(--line);margin:0;line-height:1.6}
+.side-mini li:last-child{border-bottom:none}
+.side-mini .t{display:block;font-size:.7rem;color:var(--ink-3)}
+.side-cta{background:linear-gradient(150deg,#103449,#17566e);color:#dceeea;border:none}
+.side-cta h3{border-bottom-color:rgba(255,255,255,.18);color:#fff}
+.side-cta p{font-size:var(--fs-xs);color:#b9d5d1;line-height:1.7;margin-bottom:10px}
+.side-cta .btn{width:100%;justify-content:center;background:var(--accent);color:#08302a;font-size:var(--fs-xs)}
+
+/* 页尾 */
+.site-footer{background:#0d2431;color:#9fbab8;margin-top:20px;padding:clamp(28px,4vw,46px) 0 0}
+.footer-in{max-width:1180px;margin:0 auto;padding:0 var(--sp)}
+.footer-top{display:grid;grid-template-columns:1.3fr 2fr;gap:clamp(20px,3.4vw,48px);padding-bottom:26px}
+.footer-brand .brand-name{color:#fff}
+.footer-brand .brand-sub{color:#7e9a9b}
+.footer-brand p{font-size:var(--fs-sm);line-height:1.8;color:#8fa9a9;margin:12px 0 0;max-width:30em}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.footer-cols h4{font-size:var(--fs-sm);color:#e5f0ee;margin:0 0 9px;font-weight:600}
+.footer-cols ul{list-style:none;padding:0;margin:0;font-size:var(--fs-xs)}
+.footer-cols li{margin-bottom:6px}
+.footer-cols a{color:#9fbab8}
+.footer-cols a:hover{color:#a9ecdc}
+.footer-note{
+  border-top:1px solid rgba(255,255,255,.1);padding:16px 0;font-size:var(--fs-xs);
+  color:#7e9a9b;line-height:1.8;
+}
+.footer-note b{color:#b9d5d1;font-weight:600}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding:13px 0 18px;font-size:var(--fs-xs);
+  color:#6f8b8c;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+/* 回到顶部 */
+.to-top{
+  position:fixed;right:18px;bottom:22px;width:42px;height:42px;border-radius:50%;
+  background:var(--brand);color:#fff;border:none;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;box-shadow:var(--shadow-lg);
+  opacity:0;visibility:hidden;transform:translateY(10px);transition:all .22s ease;z-index:70;
+}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.to-top:hover{background:var(--brand-2)}
+.to-top svg{width:18px;height:18px}
+
+/* 响应式 */
+@media (max-width:1000px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr));grid-column:1}
+  .sidebar .side-card:first-child{grid-column:1/-1}
+  .hero-in{grid-template-columns:1fr}
+  .hero-visual{max-width:460px;margin:0 auto}
+  .cat-index{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .footer-top{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  :root{--sticky-h:104px}
+  .menu-btn{display:inline-flex}
+  .main-nav{
+    position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow);flex-direction:column;align-items:stretch;padding:8px var(--sp) 12px;
+    gap:2px;display:none;
+  }
+  .main-nav.open{display:flex}
+  .main-nav a{padding:9px 10px;border-radius:6px;font-size:.9rem}
+  .header-in{position:relative;flex-wrap:wrap}
+  .header-tools{margin-left:auto}
+  .search-box input{width:118px}
+  .search-result{width:230px}
+  .grid-3,.grid-2,.overview,.compare{grid-template-columns:1fr}
+  .compare .col+.col{border-left:none;border-top:1px solid var(--line)}
+  .cat-index{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sidebar{grid-template-columns:1fr}
+  .footer-cols{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{max-width:100%}
+  .notice-in{font-size:.78rem;gap:6px;padding:6px var(--sp)}
+  .tight-list li{grid-template-columns:1fr auto;gap:3px 10px}
+  .tight-list .date{grid-column:1/-1;order:2}
+  .to-top{right:12px;bottom:14px;width:38px;height:38px}
+}
+@media (max-width:380px){
+  .cat-index{grid-template-columns:1fr}
+  .search-box{display:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-zone">
+  <div class="notice" role="region" aria-label="更新公告">
+    <div class="notice-in">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="tag">传送门最新地址发布页</span>
+      <span><b>11 月 6 日 22:15</b> 起主入口切换为 <b>dmp-07</b>，旧域名 dmp-01 在华东、华南多省解析超时，已置为备用。</span>
+      <span class="sep" aria-hidden="true">|</span>
+      <span>下次核对：今天 21:00 <a href="/#notice-log">查看切换记录</a></span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-in">
+      <a class="brand" href="/#top" aria-label="返回首页">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#0f2c3f"/>
+          <path d="M14 44h36M14 32h24M14 20h16" stroke="#36c2a2" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="48" cy="20" r="6" fill="#f2b53a"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">传送门最新地址发布页</span>
+          <span class="brand-sub">DMP STATUS · 入口状态台</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="主题导航">
+        <a href="/#overview">入口概览</a>
+        <a href="/#picks">精选入口</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#channels">频道分类</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">访问指南</a>
+        <a href="/#faq">常见问题</a>
+        <a href="/#comments">用户反馈</a>
+        <a href="/#rank">稳定榜单</a>
+      </nav>
+
+      <div class="header-tools">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="siteSearch" placeholder="搜域名 / 栏目" aria-label="站内搜索" autocomplete="off">
+          <div class="search-result" id="searchResult" role="listbox" aria-label="搜索结果"></div>
+        </div>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="展开导航菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+  <!-- 首屏 -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero-in">
+      <div class="hero-copy">
+        <span class="hero-badge">2026-11-08 更新 · 入口核对完成</span>
+        <h1 id="heroTitle">传送门最新地址发布页</h1>
+        <p class="hero-lead">
+          汇总当前能打开的入口域名与备用地址，记录每次切换的时间、原因和受影响地区。
+          多数访客遇到的问题并非站点下线，而是<strong>本地 DNS 缓存</strong>或<strong>运营商拦截</strong>造成的解析失败——
+          先换 DNS 再换域名，往往两分钟就能定位。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#latest">查看今天可用入口</a>
+          <a class="btn btn-ghost" href="/#guide">按步骤排查打不开</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>7</b><span>当前在线入口</span></div>
+          <div class="hero-stat"><b>4.2 天</b><span>近 9 次平均切换间隔</span></div>
+          <div class="hero-stat"><b>09:00 / 21:00</b><span>每日两次核对</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 420 340" role="img" aria-label="入口域名切换示意">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1b6a72"/><stop offset="1" stop-color="#0f2c3f"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#36c2a2"/><stop offset="1" stop-color="#1f8f78"/>
+            </linearGradient>
+          </defs>
+          <rect x="18" y="26" width="384" height="248" rx="18" fill="url(#g1)" stroke="rgba(169,236,220,.28)"/>
+          <rect x="38" y="48" width="344" height="22" rx="11" fill="rgba(255,255,255,.08)"/>
+          <circle cx="52" cy="59" r="4" fill="#f2b53a"/>
+          <circle cx="66" cy="59" r="4" fill="#36c2a2"/>
+          <circle cx="80" cy="59" r="4" fill="rgba(255,255,255,.35)"/>
+          <g stroke="rgba(169,236,220,.55)" stroke-width="2" fill="none">
+            <path d="M60 108h64M60 130h44M60 152h84"/>
+          </g>
+          <rect x="60" y="180" width="132" height="34" rx="8" fill="url(#g2)"/>
+          <text x="76" y="202" font-family="monospace" font-size="14" fill="#08302a">dmp-07</text>
+          <text x="60" y="238" font-size="11" fill="#9fbcba">主入口 · 11/06 22:15 切换</text>
+          <g>
+            <rect x="232" y="98" width="126" height="40" rx="8" fill="rgba(255,255,255,.1)" stroke="rgba(169,236,220,.3)"/>
+            <text x="246" y="123" font-family="monospace" font-size="13" fill="#cfe9e4">dmp-01</text>
+            <text x="232" y="156" font-size="10" fill="#9fbcba">解析超时 · 备用</text>
+            <rect x="232" y="172" width="126" height="40" rx="8" fill="rgba(255,255,255,.1)" stroke="rgba(169,236,220,.3)"/>
+            <text x="246" y="197" font-family="monospace" font-size="13" fill="#cfe9e4">dmp-03</text>
+            <text x="232" y="230" font-size="10" fill="#9fbcba">可用 · 中等延迟</text>
+          </g>
+          <path d="M192 197h30" stroke="#f2b53a" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <path d="M226 192l7 5-7 5z" fill="#f2b53a"/>
+          <circle cx="330" cy="72" r="14" fill="#f2b53a" opacity=".9"/>
+          <text x="324" y="77" font-size="12" font-weight="700" fill="#3a2a05">✓</text>
+        </svg>
+        <div class="float-card fc-1"><b>在线入口 7 个</b>最近核对 11-08 08:50</div>
+        <div class="float-card fc-2"><b>本轮失效 1 个</b>dmp-05 · 11-04 15:30 起</div>
+      </div>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40V18c180 16 340-14 560-6s380 24 620 8 260-14 260-14v34z" fill="#f5f7f6"/>
+    </svg>
+  </section>
+
+  <div class="wrap">
+    <div class="layout">
+      <div id="mainCol">
+
+        <!-- 领域概览 -->
+        <section class="section" id="overview" aria-labelledby="h-overview">
+          <div class="sec-head">
+            <h2 id="h-overview"><span class="kicker">OVERVIEW</span>入口概览：当前地址池的一手状况</h2>
+            <span class="more">数据核对 2026-11-08 08:50</span>
+          </div>
+          <p class="sec-intro">
+            地址池按可用性分三档：主入口、备用入口、停用归档。主入口只有 1 个，备用入口 6 个，
+            11 月 4 日起 dmp-05 已从备用池移出。数字与下面的切换记录一一对应，可逐条回溯。
+          </p>
+          <div class="overview">
+            <div class="ov-item accent">
+              <div class="n">7<small>个</small></div>
+              <p>当前在线入口。主入口 dmp-07，备用 dmp-01/03/04/06/08/09，全部在 11-08 08:50 完成握手测试。</p>
+            </div>
+            <div class="ov-item">
+              <div class="n">9<small>次</small></div>
+              <p>10 月 9 日至 11 月 8 日的域名切换次数。间隔最短 2 天，最长 7 天，集中在月末与月初。</p>
+            </div>
+            <div class="ov-item">
+              <div class="n">2<small>次/天</small></div>
+              <p>地址列表核对节奏，09:00 与 21:00 各一次。遇大面积失效会在两小时内临时加更，公告条同步改时间。</p>
+            </div>
+            <div class="ov-item">
+              <div class="n">38%</div>
+              <p>近 30 天来访设备中安卓占比。比桌面端的解析问题更集中在自带浏览器与运营商 DNS。</p>
+            </div>
+            <div class="ov-item">
+              <div class="n">15<small>分钟</small></div>
+              <p>邮件订阅的变更通知延迟。RSS 每小时抓取一次，Telegram 频道 @dmp_status 为实时推送。</p>
+            </div>
+            <div class="ov-item">
+              <div class="n">2026-08</div>
+              <p>Telegram 频道消息可回溯的最早月份。更早的切换记录仅保留在归档快照中，不再对外公开查询。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 精选内容推荐 -->
+        <section class="section" id="picks" aria-labelledby="h-picks">
+          <div class="sec-head">
+            <h2 id="h-picks"><span class="kicker">PICKS</span>精选内容推荐</h2>
+            <span class="more">编辑按实用度排序</span>
+          </div>
+          <div class="grid-3">
+            <article class="card">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/dmp-dns-01/640/360" width="640" height="360" loading="lazy" alt="手机上打开网络设置修改 DNS 的画面示意">
+              </div>
+              <div class="card-body">
+                <span class="card-tag">排查方法</span>
+                <h3>换 DNS 前先关掉私人中继</h3>
+                <p>部分安卓机开启私人 DNS 后，会把 dmp 系列域名统一返回 0.0.0.0。先改回“自动”，再测试主入口与备用入口的握手结果。</p>
+                <div class="card-meta"><span>11-07</span><span>阅读 4.2k</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/dmp-domain-02/640/360" width="640" height="360" loading="lazy" alt="域名记录列表与时间戳的屏幕截图风格画面">
+              </div>
+              <div class="card-body">
+                <span class="card-tag">地址变更</span>
+                <h3>dmp-01 到 dmp-07 的六个月切换账</h3>
+                <p>把 5 月以来的 17 次域名切换按原因归类：解析拦截 9 次、证书过期 4 次、服务迁移 3 次、误报 1 次。拦截占比过半。</p>
+                <div class="card-meta"><span>11-06</span><span>含 17 条记录</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-thumb">
+                <img src="https://picsum.photos/seed/dmp-mirror-03/640/360" width="640" height="360" loading="lazy" alt="两台显示器并排显示登录页面的办公桌面">
+              </div>
+              <div class="card-body">
+                <span class="card-tag">风险识别</span>
+                <h3>镜像站登录页的三个破绽</h3>
+                <p>仿站常把登录按钮做成图片、表单 action 指向第三方域名、缺少域名校验提示。对照这三处，十秒能筛掉大半假入口。</p>
+                <div class="card-meta"><span>11-05</span><span>附对照表</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 最新更新 -->
+        <section class="section" id="latest" aria-labelledby="h-latest">
+          <div class="sec-head">
+            <h2 id="h-latest"><span class="kicker">LIVE</span>最新更新与地址变更</h2>
+            <span class="more"><a href="/#notice-log">完整切换记录</a></span>
+          </div>
+          <ul class="tight-list">
+            <li>
+              <span class="date">11-08 08:50</span>
+              <span class="title"><b>完成当日首轮核对</b>，7 个入口全部通过握手，dmp-05 维持停用状态</span>
+              <span class="lv">核对</span>
+            </li>
+            <li>
+              <span class="date">11-07 21:10</span>
+              <span class="title"><b>备用入口 dmp-09 新增</b>，部署在新加坡节点，华南地区平均延迟 62ms</span>
+              <span class="lv">新增</span>
+            </li>
+            <li>
+              <span class="date">11-06 22:15</span>
+              <span class="title"><b>主入口切换至 dmp-07</b>，dmp-01 因华东、华南多省解析超时降为备用</span>
+              <span class="lv">切换</span>
+            </li>
+            <li>
+              <span class="date">11-04 15:30</span>
+              <span class="title"><b>dmp-05 移出地址池</b>，证书链在 iOS 15 以下版本报错，暂不修复</span>
+              <span class="lv">停用</span>
+            </li>
+            <li>
+              <span class="date">11-02 09:40</span>
+              <span class="title"><b>Telegram 频道 @dmp_status 上线</b>，切换后 1 分钟内推送域名与新入口链接</span>
+              <span class="lv">通知</span>
+            </li>
+            <li>
+              <span class="date">10-30 18:05</span>
+              <span class="title"><b>RSS 源改为每小时抓取</b>，此前为每 6 小时，延迟最长缩短至 60 分钟</span>
+              <span class="lv">订阅</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 频道分类 -->
+        <section class="section" id="channels" aria-labelledby="h-channels">
+          <div class="sec-head">
+            <h2 id="h-channels"><span class="kicker">CHANNELS</span>频道分类：按你要找的东西分</h2>
+            <span class="more">10 个频道</span>
+          </div>
+          <div class="cat-index">
+            <a class="cat-item" href="/#latest"><b>今日可用入口</b><span>7 个 · 08:50 核对</span></a>
+            <a class="cat-item" href="/#notice-log"><b>域名切换记录</b><span>9 条 · 近 30 天</span></a>
+            <a class="cat-item" href="/#guide"><b>打不开排查步骤</b><span>5 步定位法</span></a>
+            <a class="cat-item" href="/#compare"><b>备用入口与镜像站区别</b><span>对照面板</span></a>
+            <a class="cat-item" href="/#deep"><b>域名失效原因分析</b><span>深度解析</span></a>
+            <a class="cat-item" href="/#subscribe"><b>地址更新订阅方式</b><span>邮件 / RSS / TG</span></a>
+            <a class="cat-item" href="/#rank"><b>入口稳定性榜单</b><span>按 30 天在线率</span></a>
+            <a class="cat-item" href="/#faq"><b>手机端访问常见问题</b><span>5 问</span></a>
+            <a class="cat-item" href="/#comments"><b>用户实测反馈</b><span>8 条</span></a>
+            <a class="cat-item" href="/#tags"><b>相关推荐标签</b><span>12 个</span></a>
+          </div>
+        </section>
+
+        <!-- 深度解析 -->
+        <section class="section" id="deep" aria-labelledby="h-deep">
+          <div class="sec-head">
+            <h2 id="h-deep"><span class="kicker">ANALYSIS</span>深度解析：域名频繁变更到底该怪谁</h2>
+            <span class="more">全页唯一长文</span>
+          </div>
+          <div class="deep">
+            <div class="verdict">
+              <strong>核心判断：</strong>近半年 17 次域名切换里，真正由服务端主动迁移引起的只有 3 次，
+              其余 14 次都能在本地网络侧找到对应证据。把“打不开”一律归因为站点跑路，会让多数人白等一轮。
+            </div>
+            <p>
+              这个判断可以直接被反驳：如果服务端从未变动，为什么同一时刻不同省份的结果差别那么大？
+              下面把三条线索摊开——时间线、对比数据、说法差异——每一条都标了可核对的信息。
+            </p>
+
+            <h3>一、11 月 6 日那次切换的时间线</h3>
+            <p>
+              11 月 6 日 20:40，监控脚本第一次记录到 dmp-01 在浙江电信、广东移动两条线路上解析返回 NXDOMAIN；
+              同一分钟，北京联通与四川电信解析正常。22:15 主入口切到 dmp-07，备用池同步启用 dmp-03、dmp-04。
+              22:31，dmp-01 在受影响线路恢复解析，但已不在主入口位置。
+            </p>
+            <ul class="timeline">
+              <li><span class="t">11-06 20:40</span><b>两条线路首批报错</b><p>浙江电信、广东移动返回 NXDOMAIN；北京联通、四川电信同期正常，说明不是全局限定。</p></li>
+              <li><span class="t">11-06 21:05</span><b>本地换 DNS 后恢复</b><p>用 223.5.5.5 与 1.1.1.1 分别测试，dmp-01 在浙江电信线路上恢复解析，指向原 IP。</p></li>
+              <li><span class="t">11-06 22:15</span><b>主入口切至 dmp-07</b><p>发布页公告条同步更新，旧入口降为备用，登录态不互通，需重新验证。</p></li>
+              <li><span class="t">11-06 22:31</span><b>dmp-01 解析恢复</b><p>恢复后仍不再担任主入口，避免二次波动造成批量重定向。</p></li>
+            </ul>
+            <p>
+              时间线里最关键的并不是切换动作本身，而是 21:05 那次换 DNS 测试。
+              它把“域名被回收”的猜测排除掉了——域名指向的 IP 没变，变的只是部分线路的解析结果。
+            </p>
+
+            <h3>二、三档入口的在线率对比</h3>
+            <p>
+              把 10 月 9 日到 11 月 8 日的 31 天按入口分档统计，主入口的平均在线率为 <b>96.8%</b>，
+              备用入口为 <b>91.2%</b>，第三方镜像站只有 <b>73.4%</b>。差距主要出现在切换当天的 2 至 6 小时内。
+            </p>
+            <table>
+              <thead>
+                <tr><th>档位</th><th>样本入口</th><th>31 天在线率</th><th>切换当日最长中断</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>主入口</td><td>dmp-01 / dmp-07</td><td class="num">96.8%</td><td class="num">2 小时 11 分</td></tr>
+                <tr><td>备用入口</td><td>dmp-03 / 04 / 06 / 08 / 09</td><td class="num">91.2%</td><td class="num">5 小时 47 分</td></tr>
+                <tr><td>第三方镜像</td><td>3 个抽样站点</td><td class="num">73.4%</td><td class="num">19 小时以上</td></tr>
+              </tbody>
+            </table>
+            <p>
+              镜像站的低在线率不全是坏事——它们本就不负责稳定。问题在于，镜像页面上的“最新地址”常滞后 6 到 24 小时，
+              有两次在 dmp-05 已停用后仍挂着它的链接，点进去只会得到证书错误。
+            </p>
+
+            <h3>三、两种说法的差异在哪</h3>
+            <p>
+              社区里流传两种解释：一种认为域名被运营商批量拦截，另一种认为是站点自行轮换以规避追踪。
+              两者都能解释“地址变了”，但对普通访客的应对方式完全不同。
+            </p>
+            <blockquote>
+              说法 A（拦截论）：同一域名在不同省份冷热不均，换 DNS 能恢复，支持本地拦截判断。<br>
+              说法 B（轮换论）：站点定期换域名是主动行为，与本地网络无关。<br>
+              可核对事实：17 次切换中，有 11 次在受影响省份之外仍可解析；轮换若为主动，不应出现这种地域差异。
+            </blockquote>
+            <p>
+              客观说，两种机制可能同时存在。10 月 14 日那次证书过期就是纯服务端问题，与网络侧无关。
+              把每次中断都塞进同一个解释框架，反而会错过真正的故障点。可操作的顺序是：
+              先在本地换 DNS 与关掉私人中继，再用 4G 流量对比，最后才判断是否为服务端切换。
+            </p>
+
+            <h3>四、判断拆成可核对的清单</h3>
+            <p>下面四项是能自己动手验证的，任何一项结果不一致，都说明问题不在同一层：</p>
+            <ol>
+              <li><b>解析层：</b>用两个以上公共 DNS 查询同一域名，返回 IP 是否一致。不一致 → 本地或线路解析问题。</li>
+              <li><b>连接层：</b>解析到 IP 后能否完成 TLS 握手。能解析但握手失败 → 证书或端口问题。</li>
+              <li><b>应用层：</b>页面能否加载但登录报错。多为登录态与镜像站不互通，换回主入口重试。</li>
+              <li><b>时间层：</b>出错时间是否落在 09:00 或 21:00 核对窗口附近。接近窗口 → 优先看发布页公告条。</li>
+            </ol>
+            <p>
+              这四项的排列顺序不是随意的。解析层排第一，因为它成本最低、排除面最大；
+              时间层排最后，因为它只在切换当天附近才有判别力。
+            </p>
+          </div>
+        </section>
+
+        <!-- 体验指南 -->
+        <section class="section" id="guide" aria-labelledby="h-guide">
+          <div class="sec-head">
+            <h2 id="h-guide"><span class="kicker">GUIDE</span>体验指南：打不开时按这五步走</h2>
+            <span class="more">平均耗时 3 分钟</span>
+          </div>
+          <ol class="steps">
+            <li><div><b>看公告条时间</b><span>发布页顶部的公告条写明最近一次切换的时刻。如果报错时间在公告时间前后 2 小时内，大概率是切换窗口，直接改用备用入口即可。</span></div></li>
+            <li><div><b>关闭私人 DNS 与安全 DNS</b><span>安卓“私人 DNS”设成自动，Chrome 的“安全 DNS”先关。部分机型在开启后会把 dmp 系列域名统一解析到 0.0.0.0，表现为一直转圈。</span></div></li>
+            <li><div><b>换公共 DNS 复测</b><span>手动设 223.5.5.5 或 1.1.1.1，再访问主入口。能打开说明是本地运营商解析问题，不用等修复。</span></div></li>
+            <li><div><b>切 4G/5G 流量对比</b><span>Wi-Fi 与蜂窝网络走不同出口。蜂窝能开而 Wi-Fi 不能，问题在路由器或宽带侧的 DNS，重启路由器后再试。</span></div></li>
+            <li><div><b>依次试备用入口</b><span>按 dmp-07 → dmp-03 → dmp-04 → dmp-06 顺序试。每个入口登录态独立，切换后要重新验证，别误以为账号异常。</span></div></li>
+          </ol>
+          <p class="sec-intro" style="margin-top:14px">
+            五步走完仍打不开的，多半不在你这一侧。11 月 4 日 dmp-05 停用当天，有访客连续重试 40 分钟，
+            最后发现公告条已写明该域名移出地址池——先看公告，比反复刷新省事。
+          </p>
+        </section>
+
+        <!-- 对照面板 -->
+        <section class="section" id="compare" aria-labelledby="h-compare">
+          <div class="sec-head">
+            <h2 id="h-compare"><span class="kicker">COMPARE</span>备用入口与镜像站对照</h2>
+            <span class="more">按六项指标</span>
+          </div>
+          <div class="compare">
+            <div class="col">
+              <div class="col-h ok">备用入口（官方地址池）</div>
+              <ul>
+                <li>与主入口共用同一后台数据，收藏夹无需重复登录</li>
+                <li>每天 09:00、21:00 两次核对，失效当天即移出</li>
+                <li>切换通知 15 分钟内送达邮件订阅者</li>
+                <li>域名后缀统一为 dmp-数字，可交叉验证</li>
+                <li>登录表单提交至同域接口，无第三方跳转</li>
+                <li>近 31 天在线率 91.2%</li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-h bad">第三方镜像站</div>
+              <ul>
+                <li>静态复刻导航页，更新滞后 6 至 24 小时</li>
+                <li>登录态不互通，需重新验证甚至重复注册</li>
+                <li>部分站点把登录按钮做成图片，难辨真假</li>
+                <li>表单可能提交至第三方域名，存在凭据风险</li>
+                <li>dmp-05 停用后仍有镜像挂着旧链接</li>
+                <li>抽样 3 站，近 31 天在线率 73.4%</li>
+              </ul>
+            </div>
+          </div>
+          <p class="sec-intro" style="margin-top:12px">
+            判断方法很朴素：地址栏域名是否为 dmp-数字 结构，登录页是否有域名校验提示。
+            两条都不满足的，按镜像站对待，别在页面上输入账号。
+          </p>
+        </section>
+
+        <!-- 订阅与通知 -->
+        <section class="section" id="subscribe" aria-labelledby="h-subscribe">
+          <div class="sec-head">
+            <h2 id="h-subscribe"><span class="kicker">NOTIFY</span>地址更新订阅与提醒</h2>
+            <span class="more">三种方式</span>
+          </div>
+          <div class="grid-3">
+            <div class="card" style="padding:15px 16px">
+              <span class="card-tag">邮件</span>
+              <h3 style="margin:6px 0 4px">变更后 15 分钟内发出</h3>
+              <p style="font-size:var(--fs-sm);color:var(--ink-2);margin:0">订阅后收到切换时间、新域名与受影响地区三项信息。11 月 6 日那次切换，邮件在 22:27 送达，比公告条晚 12 分钟。</p>
+            </div>
+            <div class="card" style="padding:15px 16px">
+              <span class="card-tag">RSS</span>
+              <h3 style="margin:6px 0 4px">每小时抓取一次</h3>
+              <p style="font-size:var(--fs-sm);color:var(--ink-2);margin:0">适合用阅读器集中看。10 月 30 日从每 6 小时改为每小时，最长延迟从 6 小时压到 60 分钟，代价是条目偶有重复。</p>
+            </div>
+            <div class="card" style="padding:15px 16px">
+              <span class="card-tag">Telegram</span>
+              <h3 style="margin:6px 0 4px">@dmp_status 实时推送</h3>
+              <p style="font-size:var(--fs-sm);color:var(--ink-2);margin:0">11 月 2 日上线，切换后 1 分钟内推送。频道历史可回溯到 2026 年 8 月，是目前最快的通知通道。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq" aria-labelledby="h-faq">
+          <div class="sec-head">
+            <h2 id="h-faq"><span class="kicker">FAQ</span>常见问题</h2>
+            <span class="more">5 个高频疑问</span>
+          </div>
+          <div class="faq">
+            <details open>
+              <summary>传送门最新地址发布页打不开是域名被屏蔽吗</summary>
+              <div class="ans">多数情况是本地运营商解析被拦截，或 DNS 缓存没刷新。11 月 5 日主域名 dmp-01 在部分省份解析超时，改用备用域名 dmp-07 后恢复；先换 DNS 再换域名，能定位问题出在本地网络还是域名本身。</div>
+            </details>
+            <details>
+              <summary>备用入口和镜像站有什么区别</summary>
+              <div class="ans">备用入口与原站共用同一后台数据，只是域名不同；镜像站是第三方复刻的静态导航，更新常滞后 6 到 24 小时，登录态也不互通。在镜像站页面上输入账号密码前，先看清地址栏域名归属。</div>
+            </details>
+            <details>
+              <summary>发布页的地址列表多久同步一次</summary>
+              <div class="ans">每天 09:00 与 21:00 各核对一次，遇域名失效会临时加更。2026 年 10 月 9 日至 11 月 8 日共记录 9 次切换，平均间隔 4.2 天，最近一次是 11 月 6 日 22:15 切换至 dmp-07。</div>
+            </details>
+            <details>
+              <summary>手机端访问地址页要注意什么</summary>
+              <div class="ans">部分安卓浏览器会把新域名识别为风险页面并折叠跳转按钮，需手动点“继续访问”。iOS 在 Safari 隐私模式下不保留登录态，退出后要重新验证，建议改用普通模式或桌面端。</div>
+            </details>
+            <details>
+              <summary>订阅地址更新提醒有哪几种方式</summary>
+              <div class="ans">目前提供邮件订阅、RSS 与 Telegram 频道三种。邮件在变更后 15 分钟内发出，RSS 每小时抓取一次，Telegram 频道 @dmp_status 实时推送，历史消息可回溯到 2026 年 8 月。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 用户评论 -->
+        <section class="section" id="comments" aria-labelledby="h-comments">
+          <div class="sec-head">
+            <h2 id="h-comments"><span class="kicker">VOICES</span>用户实测反馈</h2>
+            <span class="more">8 条 · 含中性评价</span>
+          </div>
+          <div class="comments">
+            <div class="comment">
+              <div class="who"><span class="avatar">浙</span>浙江电信用户<span class="time">11-07 23:12</span></div>
+              <p>11 月 6 日晚上九点多打不开，按指南把私人 DNS 关了，<span class="ref">dmp-03</span> 立刻能进。第二天换回 dmp-07 也正常，中间没再折腾。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a2">粤</span>广东移动用户<span class="time">11-07 19:40</span></div>
+              <p>移动线路这次影响挺明显，<span class="ref">dmp-01</span> 一直解析失败，切到 <span class="ref">dmp-09</span> 之后延迟 62ms，比原来还快一点。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a3">京</span>北京联通用户<span class="time">11-06 22:50</span></div>
+              <p>同一时间我这完全正常。地域差异这么大的话，媒体上说“站点跑路”就有点夸张了，标题党。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a4">川</span>四川电信用户<span class="time">11-06 10:05</span></div>
+              <p>公告条写的是 22:15 切，我 21 点就试出来 <span class="ref">dmp-05</span> 有问题。已经停用的域名还留在旧链接里，这个清理节奏可以再快点。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a2">沪</span>上海用户<span class="time">11-05 16:20</span></div>
+              <p>在某个镜像站看到“最新地址”，点进去是 <span class="ref">dmp-05</span> 的旧页，证书直接报错。发布页这边至少写了停用时间 11-04 15:30，能对上。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a3">iOS</span>iPhone 用户<span class="time">11-05 09:33</span></div>
+              <p>Safari 隐私模式每次都要重新登录，来回三次才反应过来是模式问题。指南里提到这条，算省了事。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar">鲁</span>山东联通用户<span class="time">11-04 20:11</span></div>
+              <p>邮件订阅这次 22:27 才收到，比 Telegram 晚了快十分钟。急用的时候还是频道靠谱，邮件适合当备份。</p>
+            </div>
+            <div class="comment">
+              <div class="who"><span class="avatar a4">闽</span>福建用户<span class="time">11-03 14:05</span></div>
+              <p><span class="ref">dmp-08</span> 在我这测速一般，下载页加载慢，但登录没问题。备用入口本来就不是给大流量场景用的，能开就行。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 相关资讯 -->
+        <section class="section" id="news" aria-labelledby="h-news">
+          <div class="sec-head">
+            <h2 id="h-news"><span class="kicker">NEWS</span>相关资讯</h2>
+            <span class="more">近 30 天</span>
+          </div>
+          <ul class="tight-list">
+            <li><span class="date">11-08</span><span class="title">今日首轮核对完成，7 个入口握手全部通过</span><span class="lv">核对</span></li>
+            <li><span class="date">11-07</span><span class="title">新加坡节点 <b>dmp-09</b> 加入备用池，华南延迟 62ms</span><span class="lv">节点</span></li>
+            <li><span class="date">11-06</span><span class="title">主入口切换至 <b>dmp-07</b>，dmp-01 降为备用</span><span class="lv">切换</span></li>
+            <li><span class="date">11-04</span><span class="title"><b>dmp-05</b> 证书链在 iOS 15 以下报错，移出地址池</span><span class="lv">停用</span></li>
+            <li><span class="date">11-02</span><span class="title">Telegram 频道 <b>@dmp_status</b> 上线，切换后 1 分钟推送</span><span class="lv">通知</span></li>
+            <li><span class="date">10-30</span><span class="title">RSS 抓取频率由 6 小时调整为 1 小时</span><span class="lv">订阅</span></li>
+          </ul>
+        </section>
+
+        <!-- 榜单 -->
+        <section class="section" id="rank" aria-labelledby="h-rank">
+          <div class="sec-head">
+            <h2 id="h-rank"><span class="kicker">RANK</span>入口稳定性榜单（近 31 天）</h2>
+            <span class="more">按在线率排序</span>
+          </div>
+          <ul class="rank">
+            <li><span class="no">1</span><span class="info"><b>dmp-07</b><span>主入口 · 11-06 启用 · 在线率 99.1%</span></span><span class="bar"><i style="width:99.1%"></i></span></li>
+            <li><span class="no">2</span><span class="info"><b>dmp-03</b><span>备用 · 延迟中等 · 在线率 96.4%</span></span><span class="bar"><i style="width:96.4%"></i></span></li>
+            <li><span class="no">3</span><span class="info"><b>dmp-04</b><span>备用 · 证书 10-21 续期 · 在线率 94.7%</span></span><span class="bar"><i style="width:94.7%"></i></span></li>
+            <li><span class="no">4</span><span class="info"><b>dmp-09</b><span>备用 · 11-07 新增 · 在线率 93.8%</span></span><span class="bar"><i style="width:93.8%"></i></span></li>
+            <li><span class="no">5</span><span class="info"><b>dmp-06</b><span>备用 · 华东线路波动 · 在线率 89.5%</span></span><span class="bar"><i style="width:89.5%"></i></span></li>
+            <li><span class="no">6</span><span class="info"><b>dmp-08</b><span>备用 · 下载页偏慢 · 在线率 87.2%</span></span><span class="bar"><i style="width:87.2%"></i></span></li>
+            <li><span class="no">7</span><span class="info"><b>dmp-01</b><span>备用 · 11-06 降级 · 在线率 85.9%</span></span><span class="bar"><i style="width:85.9%"></i></span></li>
+          </ul>
+        </section>
+
+        <!-- 切换记录补充板块 -->
+        <section class="section" id="notice-log" aria-labelledby="h-log">
+          <div class="sec-head">
+            <h2 id="h-log"><span class="kicker">LOG</span>近 30 天域名切换记录</h2>
+            <span class="more">共 9 次</span>
+          </div>
+          <ul class="timeline">
+            <li><span class="t">11-06 22:15</span><b>dmp-01 → dmp-07</b><p>华东、华南多省解析超时；换 DNS 可恢复，非域名回收。</p></li>
+            <li><span class="t">10-31 10:20</span><b>dmp-06 → dmp-01</b><p>dmp-06 在江苏、安徽部分线路握手失败，回切主域名。</p></li>
+            <li><span class="t">10-26 19:05</span><b>dmp-04 → dmp-06</b><p>dmp-04 证书进入续期窗口，提前 5 天切换规避中断。</p></li>
+            <li><span class="t">10-21 08:30</span><b>dmp-03 → dmp-04</b><p>例行轮换，dmp-03 保留为备用，登录态不迁移。</p></li>
+            <li><span class="t">10-14 16:42</span><b>dmp-08 → dmp-03</b><p>证书过期，属纯服务端问题，与本地网络无关。</p></li>
+            <li><span class="t">10-09 09:15</span><b>dmp-05 → dmp-08</b><p>dmp-05 首次出现 iOS 15 以下证书链报错，降为备用。</p></li>
+          </ul>
+          <p class="sec-intro" style="margin-top:10px">
+            10 月 9 日之前还有 3 次切换，记录归档在 8 月快照中，不在本页展开。9 次里 11 月占 2 次，切换密度并未明显上升。
+          </p>
+        </section>
+
+        <!-- 相关推荐标签 -->
+        <section class="section" id="tags" aria-labelledby="h-tags">
+          <div class="sec-head">
+            <h2 id="h-tags"><span class="kicker">TAGS</span>相关推荐标签</h2>
+            <span class="more">12 个</span>
+          </div>
+          <div class="tag-cloud">
+            <a class="tag hot" href="/#latest">dmp-07 新主入口</a>
+            <a class="tag" href="/#guide">私人 DNS 关闭方法</a>
+            <a class="tag" href="/#compare">备用入口与镜像区别</a>
+            <a class="tag" href="/#deep">域名解析超时排查</a>
+            <a class="tag" href="/#notice-log">dmp-01 降级记录</a>
+            <a class="tag" href="/#faq">手机端风险页提示</a>
+            <a class="tag" href="/#subscribe">邮件订阅变更通知</a>
+            <a class="tag" href="/#rank">入口在线率榜</a>
+            <a class="tag" href="/#comments">iOS 隐私模式登录态</a>
+            <a class="tag hot" href="/#latest">dmp-09 新加坡节点</a>
+            <a class="tag" href="/#compare">镜像站登录表单风险</a>
+            <a class="tag" href="/#guide">4G 与 Wi-Fi 对比测试</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 侧栏 -->
+      <aside class="sidebar" aria-label="侧栏导航与快捷信息">
+        <div class="side-card">
+          <h3>本页栏目</h3>
+          <ul class="side-nav" id="sideNav">
+            <li><a href="/#overview">入口概览</a></li>
+            <li><a href="/#picks">精选内容推荐</a></li>
+            <li><a href="/#latest">最新更新</a></li>
+            <li><a href="/#channels">频道分类</a></li>
+            <li><a href="/#deep">深度解析</a></li>
+            <li><a href="/#guide">体验指南</a></li>
+            <li><a href="/#compare">备用与镜像对照</a></li>
+            <li><a href="/#subscribe">订阅与提醒</a></li>
+            <li><a href="/#faq">常见问题</a></li>
+            <li><a href="/#comments">用户反馈</a></li>
+            <li><a href="/#news">相关资讯</a></li>
+            <li><a href="/#rank">稳定榜单</a></li>
+            <li><a href="/#notice-log">切换记录</a></li>
+            <li><a href="/#tags">相关标签</a></li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>快捷查看</h3>
+          <ul class="side-mini">
+            <li>当前主入口 <b>dmp-07</b><span class="t">11-06 22:15 启用</span></li>
+            <li>备用入口 <b>dmp-03 / 04 / 06 / 08 / 09</b><span class="t">dmp-01 降级保留</span></li>
+            <li>已停用 <b>dmp-05</b><span class="t">11-04 15:30 起</span></li>
+            <li>下次核对 <b>今天 21:00</b><span class="t">每日两次</span></li>
+          </ul>
+        </div>
+
+        <div class="side-card side-cta">
+          <h3>不等公告，先收提醒</h3>
+          <p>切换后 1 分钟内推送新域名，邮件 15 分钟送达。选一个顺手的就行。</p>
+          <a class="btn" href="/#subscribe">查看订阅方式</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#17566e"/>
+            <path d="M14 44h36M14 32h24M14 20h16" stroke="#36c2a2" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="48" cy="20" r="6" fill="#f2b53a"/>
+          </svg>
+          <span class="brand-text">
+            <span class="brand-name">传送门最新地址发布页</span>
+            <span class="brand-sub">DMP STATUS</span>
+          </span>
+        </div>
+        <p>
+          从解析、握手到登录三层记录入口状态，帮你在地址变更当天少走几轮刷新。
+          页面上的域名、时间与在线率均为可回溯的核对结果。
+        </p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>入口信息</h4>
+          <ul>
+            <li><a href="/#latest">今日可用入口</a></li>
+            <li><a href="/#rank">入口稳定性榜单</a></li>
+            <li><a href="/#notice-log">域名切换记录</a></li>
+            <li><a href="/#overview">地址池概览</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>排查与指南</h4>
+          <ul>
+            <li><a href="/#guide">打不开五步排查</a></li>
+            <li><a href="/#compare">备用入口与镜像对照</a></li>
+            <li><a href="/#faq">手机端常见问题</a></li>
+            <li><a href="/#deep">域名失效原因解析</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>提醒与反馈</h4>
+          <ul>
+            <li><a href="/#subscribe">邮件与 RSS 订阅</a></li>
+            <li><a href="/#subscribe">Telegram 频道</a></li>
+            <li><a href="/#comments">用户实测反馈</a></li>
+            <li><a href="/#tags">相关推荐标签</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      <b>示例数据说明：</b>本页域名为 dmp-01 至 dmp-09 的示例编号，切换时间、在线率、延迟数据用于演示核对方法，
+      不指向任何真实站点。用户评论为示例内容。页面更新时间为 2026-11-08 08:50，
+      对应正文“完成当日首轮核对”一条，可在最新更新与切换记录中核对。
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 传送门最新地址发布页 · 内容整理与状态核对</span>
+      <span>入口状态按 09:00 / 21:00 两次核对</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var menuBtn = document.getElementById('menuBtn');
+  var mainNav = document.getElementById('mainNav');
+  var navLinks = mainNav ? Array.prototype.slice.call(mainNav.querySelectorAll('a')) : [];
+
+  /* 移动端菜单 */
+  if (menuBtn && mainNav){
+    menuBtn.addEventListener('click', function(){
+      var open = mainNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? '收起导航菜单' : '展开导航菜单');
+    });
+    navLinks.forEach(function(a){
+      a.addEventListener('click', function(){
+        if (mainNav.classList.contains('open')){
+          mainNav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded','false');
+          menuBtn.setAttribute('aria-label','展开导航菜单');
+        }
+      });
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && mainNav.classList.contains('open')){
+        mainNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.focus();
+      }
+    });
+  }
+
+  /* 本地搜索 */
+  var input = document.getElementById('siteSearch');
+  var result = document.getElementById('searchResult');
+  var index = [
+    {t:'入口概览：地址池的一手状况', h:'/#overview'},
+    {t:'精选内容推荐', h:'/#picks'},
+    {t:'最新更新与地址变更', h:'/#latest'},
+    {t:'频道分类：按你要找的东西分', h:'/#channels'},
+    {t:'深度解析：域名频繁变更到底该怪谁', h:'/#deep'},
+    {t:'体验指南：打不开时按这五步走', h:'/#guide'},
+    {t:'备用入口与镜像站对照', h:'/#compare'},
+    {t:'地址更新订阅与提醒', h:'/#subscribe'},
+    {t:'常见问题 FAQ', h:'/#faq'},
+    {t:'用户实测反馈', h:'/#comments'},
+    {t:'相关资讯', h:'/#news'},
+    {t:'入口稳定性榜单', h:'/#rank'},
+    {t:'近 30 天域名切换记录', h:'/#notice-log'},
+    {t:'相关推荐标签', h:'/#tags'},
+    {t:'dmp-07 主入口', h:'/#latest'},
+    {t:'dmp-09 新加坡节点', h:'/#latest'},
+    {t:'dmp-05 停用', h:'/#notice-log'},
+    {t:'dmp-01 降级', h:'/#notice-log'},
+    {t:'私人 DNS 关闭方法', h:'/#guide'},
+    {t:'镜像站登录表单风险', h:'/#compare'},
+    {t:'邮件订阅变更通知', h:'/#subscribe'},
+    {t:'iOS 隐私模式登录态', h:'/#faq'},
+    {t:'4G 与 Wi-Fi 对比测试', h:'/#guide'}
+  ];
+
+  function renderSearch(q){
+    if (!result) return;
+    var kw = q.trim().toLowerCase();
+    if (!kw){
+      result.innerHTML = '';
+      result.classList.remove('show');
+      return;
+    }
+    var hits = index.filter(function(item){
+      return item.t.toLowerCase().indexOf(kw) !== -1;
+    }).slice(0,8);
+    if (!hits.length){
+      result.innerHTML = '<div class="none">没有找到与“' + q.replace(/[<>&]/g,'') + '”相关的内容，试试“入口”“DNS”“镜像”。</div>';
+    } else {
+      result.innerHTML = hits.map(function(item){
+        return '<a href="' + item.h + '">' + item.t + '</a>';
+      }).join('');
+    }
+    result.classList.add('show');
+  }
+
+  if (input && result){
+    input.addEventListener('input', function(){ renderSearch(input.value); });
+    input.addEventListener('focus', function(){ if (input.value.trim()) renderSearch(input.value); });
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Enter'){
+        var kw = input.value.trim();
+        if (!kw) return;
+        var first = index.filter(function(i){ return i.t.toLowerCase().indexOf(kw.toLowerCase()) !== -1; })[0];
+        if (first){ window.location.hash = first.h.replace('/#',''); }
+      }
+    });
+    document.addEventListener('click', function(e){
+      if (!result.contains(e.target) && e.target !== input){
+        result.classList.remove('show');
+      }
+    });
+    result.addEventListener('click', function(){
+      result.classList.remove('show');
+      if (input) input.value = '';
+    });
+  }
+
+  /* 回到顶部 */
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    if (!toTop) return;
+    if (window.scrollY > 480){ toTop.classList.add('show'); }
+    else { toTop.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  if (toTop){
+    toTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+  onScroll();
+
+  /* 侧栏滚动高亮 */
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('#sideNav a'));
+  var sectionIds = sideLinks.map(function(a){
+    return decodeURIComponent(a.getAttribute('href').replace('/#',''));
+  });
+  var sections = sectionIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length){
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        visible[en.target.id] = en.isIntersecting;
+      });
+      var current = null;
+      for (var i = 0; i < sectionIds.length; i++){
+        if (visible[sectionIds[i]]){ current = sectionIds[i]; break; }
+      }
+      if (!current){
+        var minTop = Infinity;
+        sections.forEach(function(sec){
+          var top = sec.getBoundingClientRect().top;
+          if (top < 160 && Math.abs(top) < minTop){ minTop = Math.abs(top); current = sec.id; }
+        });
+      }
+      sideLinks.forEach(function(a){
+        var id = decodeURIComponent(a.getAttribute('href').replace('/#',''));
+        a.classList.toggle('is-current', id === current);
+      });
+    }, {rootMargin:'-100px 0px -55% 0px', threshold:0});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+                </html>
