@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1024 7086 bt失效地址-镜像线路与节点排查</title>
+<meta name="description" content="1024 7086 bt失效地址常见原因与处理记录：镜像线路改版、域名跳转、端口变化、节点连接超时。按 11 月 3 日至 11 月 8 日的可用性观测整理备用线路与排查步骤，附用户实测反馈与常见问答。">
+<meta name="keywords" content="1024 7086 bt失效地址">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2a3c'/%3E%3Cpath d='M8 10h16v3H8zM8 16h11v3H8zM8 22h7v3H8z' fill='%234fd1a7'/%3E%3Ccircle cx='24' cy='22' r='3' fill='%23f0b64a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#12202b;
+  --ink-2:#3a4d5c;
+  --ink-3:#6a7d8c;
+  --bg:#f5f7f6;
+  --card:#ffffff;
+  --line:#dde5e6;
+  --brand:#0f2a3c;
+  --brand-2:#14435c;
+  --accent:#2f9e7e;
+  --accent-soft:#e4f4ee;
+  --warn:#c9762c;
+  --warn-soft:#fbeee0;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 1px 2px rgba(18,32,43,.06),0 6px 18px rgba(18,32,43,.05);
+  --shadow-sm:0 1px 2px rgba(18,32,43,.07);
+  --sp-1:8px;--sp-2:12px;--sp-3:16px;--sp-4:24px;--sp-5:32px;--sp-6:48px;
+  --fs-h1:clamp(26px,4.4vw,40px);
+  --fs-h2:clamp(20px,2.6vw,25px);
+  --fs-h3:17px;
+  --sticky-h:0px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);
+  line-height:1.75;font-size:16px;
+}
+a{color:var(--brand-2);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700}
+p{margin:0 0 var(--sp-3)}
+ul,ol{margin:0 0 var(--sp-3);padding-left:1.25em}
+li{margin-bottom:6px}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--sp-3)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 吸顶区 ---------- */
+.sticky-top{position:sticky;top:0;z-index:50}
+.announce{
+  background:var(--brand);color:#dcece7;font-size:13.5px;
+  padding:7px var(--sp-3);display:flex;gap:var(--sp-3);align-items:center;
+  justify-content:center;flex-wrap:wrap;text-align:center;
+}
+.announce strong{color:#8fe3c6;font-weight:700}
+.announce a{color:#ffe3a8;text-decoration:underline;text-underline-offset:2px}
+.announce .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);display:inline-block}
+
+header.site{
+  background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm);
+}
+.head-in{display:flex;align-items:center;gap:var(--sp-3);padding:10px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--brand);letter-spacing:.2px}
+.brand svg{flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.nav-toggle{
+  margin-left:auto;display:none;align-items:center;gap:6px;
+  background:#eef3f2;border:1px solid var(--line);color:var(--brand);
+  padding:8px 12px;border-radius:999px;font-size:14px;font-family:inherit;cursor:pointer;
+}
+.topic-nav{margin-left:auto}
+.topic-nav ul{list-style:none;display:flex;gap:2px;margin:0;padding:0;flex-wrap:wrap}
+.topic-nav a{
+  display:block;padding:7px 11px;border-radius:999px;font-size:14px;color:var(--ink-2);
+}
+.topic-nav a:hover{background:#eef3f2;color:var(--brand);text-decoration:none}
+.head-entry{
+  background:var(--brand);color:#fff;padding:8px 16px;border-radius:999px;
+  font-size:14px;font-weight:600;white-space:nowrap;
+}
+.head-entry:hover{background:var(--brand-2);text-decoration:none}
+
+/* ---------- 首屏 ---------- */
+.hero{
+  position:relative;background:
+    radial-gradient(900px 380px at 88% -10%, #d9efe6 0%, transparent 62%),
+    radial-gradient(700px 320px at 6% 110%, #e3ecf2 0%, transparent 60%),
+    #fbfcfb;
+  border-bottom:1px solid var(--line);overflow:hidden;
+}
+.hero-in{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:var(--sp-5);align-items:center;padding:var(--sp-6) 0 var(--sp-5);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);
+  color:#166a52;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;
+  border:1px solid #c9e8dd;margin-bottom:var(--sp-3);
+}
+.hero h1{font-size:var(--fs-h1);letter-spacing:-.5px;margin-bottom:var(--sp-3)}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-desc{font-size:16.5px;color:var(--ink-2);max-width:34em;margin-bottom:var(--sp-4)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:var(--sp-4)}
+.btn{
+  display:inline-block;padding:10px 20px;border-radius:999px;font-weight:600;font-size:15px;
+  border:1px solid transparent;transition:transform .15s ease,background .15s ease;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#26856a;text-decoration:none;transform:translateY(-2px)}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--brand)}
+.btn-ghost:hover{background:#f0f5f4;text-decoration:none;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:var(--sp-4);flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:var(--sp-3)}
+.hero-stats div{font-size:13px;color:var(--ink-3)}
+.hero-stats b{display:block;font-size:20px;color:var(--brand);line-height:1.3}
+
+/* 首屏原创视觉 */
+.hero-art{position:relative;height:320px}
+.hero-art svg{width:100%;height:100%;display:block}
+.art-node{animation:pulse 4s ease-in-out infinite}
+.art-node:nth-child(3){animation-delay:.8s}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  .art-node{animation:none}
+  *{scroll-behavior:auto !important}
+}
+
+/* ---------- 主体布局 ---------- */
+.layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;
+  gap:var(--sp-5);padding:var(--sp-5) 0 var(--sp-6);align-items:start;
+}
+.side{position:sticky;top:calc(var(--sticky-h) + 14px)}
+.side-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-3);margin-bottom:var(--sp-3);box-shadow:var(--shadow-sm)}
+.side-box h2{font-size:14px;letter-spacing:.4px;color:var(--ink-3);text-transform:none;margin-bottom:10px;font-weight:700}
+.side-nav ul{list-style:none;margin:0;padding:0}
+.side-nav li{margin:0}
+.side-nav a{
+  display:block;padding:6px 10px;border-radius:6px;font-size:14px;color:var(--ink-2);
+  border-left:3px solid transparent;
+}
+.side-nav a:hover{background:#f0f5f4;text-decoration:none}
+.side-nav a.active{background:var(--accent-soft);color:#166a52;border-left-color:var(--accent);font-weight:600}
+.side-note{font-size:13px;color:var(--ink-3);line-height:1.7}
+
+section.block{scroll-margin-top:calc(var(--sticky-h) + 16px);margin-bottom:var(--sp-6)}
+.block-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:var(--sp-3)}
+.block-head h2{font-size:var(--fs-h2);letter-spacing:-.2px}
+.block-head .sub{font-size:13px;color:var(--ink-3)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.pad{padding:var(--sp-4)}
+
+/* 概览：数据对照面板 */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-3)}
+.stat{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:var(--sp-3);box-shadow:var(--shadow-sm);
+}
+.stat b{display:block;font-size:24px;color:var(--brand);line-height:1.2}
+.stat span{font-size:13px;color:var(--ink-3)}
+.stat .delta{font-size:12px;font-weight:600;color:var(--warn)}
+.stat .ok{color:var(--accent)}
+
+/* 精选：不等权网格 */
+.pick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-3)}
+.pick-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.pick-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.pick-card.big{grid-column:span 2;grid-row:span 2}
+.pick-card img{width:100%;height:150px;object-fit:cover}
+.pick-card.big img{height:260px}
+.pick-body{padding:var(--sp-3);display:flex;flex-direction:column;gap:6px;flex:1}
+.kicker{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.4px}
+.pick-card h3{font-size:var(--fs-h3)}
+.pick-card p{font-size:14px;color:var(--ink-2);margin:0}
+.meta{font-size:12.5px;color:var(--ink-3);margin-top:auto;padding-top:6px}
+
+/* 最新更新：紧凑列表 */
+.updates{list-style:none;padding:0;margin:0}
+.updates li{
+  display:grid;grid-template-columns:86px minmax(0,1fr);gap:var(--sp-3);
+  padding:12px 0;border-bottom:1px dashed var(--line);
+}
+.updates li:last-child{border-bottom:0}
+.updates time{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.updates b{display:block;font-size:15px}
+.updates span{font-size:13.5px;color:var(--ink-2)}
+.badge{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:1px;font-weight:600}
+.b-fix{background:var(--accent-soft);color:#166a52}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+
+/* 分类：标签索引 */
+.tag-index{display:flex;flex-wrap:wrap;gap:10px}
+.tag-index a{
+  display:inline-flex;align-items:baseline;gap:7px;background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;
+  color:var(--ink);box-shadow:var(--shadow-sm);transition:border-color .15s;
+}
+.tag-index a:hover{border-color:var(--accent);text-decoration:none}
+.tag-index i{font-style:normal;font-size:12px;color:var(--ink-3)}
+
+/* 深度解析：分栏正文 */
+.analysis{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+.analysis-body{padding:var(--sp-4);column-gap:var(--sp-5)}
+.analysis-body h3{font-size:var(--fs-h3);margin:var(--sp-4) 0 var(--sp-2);color:var(--brand)}
+.analysis-body h3:first-child{margin-top:0}
+.analysis-body p{font-size:15.5px;color:var(--ink-2)}
+.claim{
+  border-left:4px solid var(--accent);background:#f2faf7;padding:12px 16px;
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:0 0 var(--sp-3);
+  font-size:15px;color:var(--ink);
+}
+.claim b{color:#166a52}
+.checklist{list-style:none;padding:0;margin:0 0 var(--sp-3);font-size:15px}
+.checklist li{padding-left:26px;position:relative;color:var(--ink-2)}
+.checklist li::before{
+  content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700;
+}
+.checklist li.no::before{content:"✕";color:var(--warn)}
+
+/* 体验指南：编号步骤 */
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--sp-3)}
+.step{
+  counter-increment:step;position:relative;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:var(--sp-4) var(--sp-3) var(--sp-3);box-shadow:var(--shadow-sm);
+}
+.step::before{
+  content:counter(step,decimal-leading-zero);position:absolute;top:-12px;left:14px;
+  background:var(--brand);color:#fff;font-size:12px;font-weight:700;letter-spacing:.5px;
+  padding:3px 9px;border-radius:6px;
+}
+.step h3{font-size:15.5px;margin:8px 0 6px}
+.step p{font-size:14px;color:var(--ink-2);margin:0}
+
+/* FAQ */
+.faq details{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);
+  margin-bottom:10px;box-shadow:var(--shadow-sm);
+}
+.faq summary{
+  cursor:pointer;padding:13px 16px;font-weight:600;font-size:15.5px;
+  list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:19px;color:var(--accent);font-weight:400;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 16px 14px;font-size:14.5px;color:var(--ink-2)}
+
+/* 评论 */
+.comments{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-3)}
+.cmt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-3);box-shadow:var(--shadow-sm);font-size:14px}
+.cmt p{margin:0 0 10px;color:var(--ink-2);font-size:14px}
+.cmt .who{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--ink-3)}
+.avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#9fd8c6,#4fa88f);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex:0 0 auto}
+.cmt.mid{border-color:#e4e0cf;background:#fdfcf7}
+
+/* 资讯 */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-3)}
+.news-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-3);box-shadow:var(--shadow-sm)}
+.news-card h3{font-size:15.5px;margin-bottom:6px}
+.news-card p{font-size:14px;color:var(--ink-2);margin:0 0 8px}
+
+/* 相关推荐 */
+.recs{display:flex;flex-wrap:wrap;gap:9px}
+.recs a{
+  background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 13px;
+  font-size:13.5px;color:var(--ink-2);
+}
+.recs a:hover{border-color:var(--accent);color:#166a52;text-decoration:none}
+
+/* 榜单 */
+.rank{list-style:none;padding:0;margin:0;counter-reset:rk}
+.rank li{
+  counter-increment:rk;display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;
+  align-items:center;padding:11px 0;border-bottom:1px solid var(--line);
+}
+.rank li:last-child{border-bottom:0}
+.rank li::before{
+  content:counter(rk);width:26px;height:26px;border-radius:7px;background:#eef3f2;
+  display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--brand);
+}
+.rank b{font-size:14.5px;display:block}
+.rank small{color:var(--ink-3);font-size:12.5px}
+.rank .score{font-size:13px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* 时间线 */
+.timeline{list-style:none;padding:0;margin:0;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.timeline li{position:relative;padding-left:28px;margin-bottom:var(--sp-3)}
+.timeline li::before{
+  content:"";position:absolute;left:2px;top:8px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:2px solid var(--accent);
+}
+.timeline b{font-size:14.5px;display:block}
+.timeline span{font-size:13.5px;color:var(--ink-2)}
+.timeline time{font-size:12.5px;color:var(--ink-3);display:block;margin-top:2px}
+
+/* 搜索框（页头） */
+.search{position:relative;display:flex;align-items:center;gap:6px}
+.search input{
+  width:180px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+  font-family:inherit;font-size:14px;color:var(--ink);background:#f7faf9;
+}
+.search input:focus{background:#fff;border-color:var(--accent);outline:none}
+.search-result{
+  position:absolute;top:110%;right:0;width:320px;max-height:300px;overflow:auto;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow);padding:6px;display:none;z-index:60;
+}
+.search-result.open{display:block}
+.search-result a{display:block;padding:8px 10px;border-radius:6px;font-size:13.5px;color:var(--ink-2)}
+.search-result a:hover{background:#f0f5f4;text-decoration:none}
+.search-result .empty{font-size:13px;color:var(--ink-3);padding:10px}
+
+/* 回到顶部 */
+#toTop{
+  position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--brand);font-size:18px;
+  box-shadow:var(--shadow);cursor:pointer;display:none;z-index:40;
+}
+#toTop.show{display:grid;place-items:center}
+
+/* 页尾 */
+footer.site{background:var(--brand);color:#c3d6de;padding:var(--sp-5) 0 var(--sp-3);font-size:14px}
+footer.site a{color:#cfe6de}
+footer.site a:hover{color:#fff}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--sp-4);padding-bottom:var(--sp-4);border-bottom:1px solid rgba(255,255,255,.13)}
+.foot-brand{display:flex;align-items:center;gap:9px;color:#fff;font-weight:800;font-size:17px;margin-bottom:10px}
+.foot-grid p{font-size:13.5px;line-height:1.8;margin:0 0 8px;color:#a9c1ca}
+.foot-grid h3{font-size:13px;color:#fff;letter-spacing:.5px;margin-bottom:10px}
+.foot-grid ul{list-style:none;padding:0;margin:0}
+.foot-grid li{margin-bottom:7px;font-size:13.5px}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:var(--sp-3);font-size:12.5px;color:#8fa9b4}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1020px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;order:2}
+  .main-col{order:1}
+  .hero-in{grid-template-columns:1fr;padding-top:var(--sp-5)}
+  .hero-art{height:230px;max-width:520px}
+  .pick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pick-card.big{grid-column:span 2;grid-row:auto}
+  .pick-card.big img{height:200px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .topic-nav{margin-left:0;order:3;width:100%;display:none}
+  .topic-nav.open{display:block}
+  .topic-nav ul{flex-direction:column;gap:2px;padding-top:8px;border-top:1px solid var(--line);margin-top:6px}
+  .nav-toggle{display:inline-flex}
+  .search input{width:140px}
+}
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .pick-grid{grid-template-columns:1fr}
+  .pick-card.big{grid-column:auto}
+  .head-in{gap:8px}
+  .search{order:2;margin-left:auto}
+  .head-entry{order:2;padding:7px 12px;font-size:13px}
+  .updates li{grid-template-columns:1fr;gap:2px}
+  .hero-stats b{font-size:18px}
+  .analysis-body{padding:var(--sp-3)}
+  footer.site{padding-bottom:64px}
+  #toTop{bottom:14px;right:14px}
+  .foot-grid{grid-template-columns:1fr}
+  .search-result{width:min(86vw,320px)}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto !important}
+}
+html{scroll-behavior:smooth}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-top" id="stickyZone">
+  <div class="announce">
+    <span class="dot" aria-hidden="true"></span>
+    <span><strong>1024 7086 bt失效地址</strong> 11 月 8 日 09:20 复核：主域名跳转正常，<a href="/#updates">备用线路 B2 端口改为 8443</a>，镜像节点 M7 仍超时。</span>
+  </div>
+  <header class="site">
+    <div class="wrap head-in">
+      <a href="/#top" class="brand" aria-label="回到首页顶部">
+        <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#0f2a3c"/>
+          <path d="M8 10h16v3H8zM8 16h11v3H8zM8 22h7v3H8z" fill="#4fd1a7"/>
+          <circle cx="24" cy="22" r="3" fill="#f0b64a"/>
+        </svg>
+        <span>1024 7086 bt失效地址</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="topicNav">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        频道
+      </button>
+      <nav class="topic-nav" id="topicNav" aria-label="主题导航">
+        <ul>
+          <li><a href="/#overview">线路概览</a></li>
+          <li><a href="/#picks">失效排查</a></li>
+          <li><a href="/#updates">更新记录</a></li>
+          <li><a href="/#channels">分类索引</a></li>
+          <li><a href="/#analysis">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+        </ul>
+      </nav>
+      <div class="search">
+        <label for="siteSearch" class="sr-only">站内查找条目</label>
+        <input id="siteSearch" type="search" placeholder="查线路/节点/问答" autocomplete="off" aria-describedby="searchHint">
+        <span id="searchHint" class="sr-only">输入关键词后显示匹配的栏目与条目</span>
+        <div class="search-result" id="searchResult" role="status" aria-live="polite"></div>
+      </div>
+      <a class="head-entry" href="/#guide">排查步骤</a>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap hero-in">
+      <div>
+        <span class="hero-tag">
+          <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="#166a52" stroke-width="2"/><circle cx="8" cy="8" r="2" fill="#166a52"/></svg>
+          11 月 8 日可用性观测 · 6 条线路 · 3 类故障
+        </span>
+        <h1 id="heroTitle">1024 7086 bt失效地址<em>：先分清跳转、端口还是节点</em></h1>
+        <p class="hero-desc">11 月初集中出现的打不开情况，多数不是地址被彻底作废，而是主域名 302 跳到新入口、备用线路端口从 8081 改成 8443，或者某个镜像节点在晚高峰连不上。这里按日志时间、节点编号和用户实测逐条记下来。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#analysis">看判断与证据</a>
+          <a class="btn btn-ghost" href="/#updates">今日更新 5 条</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>6</b>条线路在测</div>
+          <div><b>4</b>条可直连</div>
+          <div><b>2</b>条需改端口</div>
+          <div><b>11-03</b>故障首次聚集</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 320" role="presentation">
+          <defs>
+            <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#d9efe6"/><stop offset="1" stop-color="#e8f1f6"/>
+            </linearGradient>
+          </defs>
+          <rect x="14" y="18" width="392" height="284" rx="18" fill="url(#gA)"/>
+          <g stroke="#9db9b3" stroke-width="1.6" stroke-dasharray="5 5" fill="none">
+            <path d="M96 118 L210 96 L318 150"/>
+            <path d="M96 118 L186 214 L318 150"/>
+            <path d="M186 214 L300 246"/>
+          </g>
+          <g>
+            <rect x="52" y="96" width="88" height="46" rx="10" fill="#0f2a3c"/>
+            <text x="96" y="124" text-anchor="middle" fill="#8fe3c6" font-size="13" font-family="monospace" font-weight="700">主域名</text>
+            <rect x="166" y="72" width="88" height="46" rx="10" fill="#ffffff" stroke="#bfd4cf"/>
+            <text x="210" y="100" text-anchor="middle" fill="#3a4d5c" font-size="13" font-family="monospace">302 跳转</text>
+            <rect x="274" y="126" width="88" height="46" rx="10" fill="#2f9e7e"/>
+            <text x="318" y="154" text-anchor="middle" fill="#fff" font-size="13" font-family="monospace" font-weight="700">新入口</text>
+            <rect x="142" y="192" width="88" height="46" rx="10" fill="#ffffff" stroke="#e0cbaa"/>
+            <text x="186" y="220" text-anchor="middle" fill="#b4762f" font-size="12.5" font-family="monospace">8443 端口</text>
+            <rect x="256" y="224" width="88" height="46" rx="10" fill="#f7f3ea" stroke="#dcc9a6"/>
+            <text x="300" y="252" text-anchor="middle" fill="#a5793f" font-size="12.5" font-family="monospace">M7 超时</text>
+          </g>
+          <g fill="#2f9e7e">
+            <circle class="art-node" cx="96" cy="118" r="5"/>
+            <circle class="art-node" cx="210" cy="96" r="5"/>
+            <circle class="art-node" cx="318" cy="150" r="5"/>
+          </g>
+          <g fill="#c9762c">
+            <circle class="art-node" cx="186" cy="214" r="5"/>
+            <circle class="art-node" cx="300" cy="246" r="5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <div class="main-col">
+
+      <!-- 一 概览 -->
+      <section class="block" id="overview" aria-labelledby="ovTitle">
+        <div class="block-head">
+          <h2 id="ovTitle">线路与节点现状概览</h2>
+          <span class="sub">观测窗口 11 月 3 日—11 月 8 日，每日 3 次抽样</span>
+        </div>
+        <p>手头的地址清单里，主入口、B 系列备用线路和 M 系列镜像节点分属三套配置。主入口在 11 月 2 日换过一次证书，浏览器从那天起对旧书签先做 302 跳转，所以“打开是白屏或网址变了”多半是跳转段的问题，不是域名被注销。B2 在 11 月 5 日下午把监听端口从 8081 调到 8443，旧端口仍能应答但握手失败。M7 从 11 月 6 日晚 20:40 起在电信与联通双线超时，移动线路偶发可用。</p>
+        <div class="overview-grid">
+          <div class="stat"><b>4</b><span>可直连线路（主入口、B1、B3、B4）</span></div>
+          <div class="stat"><b>2</b><span>需改端口的线路（B2、B5）</span></div>
+          <div class="stat"><b>14 次</b><span>7 天内记录的加载失败</span></div>
+          <div class="stat"><b>9 次</b><span>其中可在 3 分钟内恢复</span></div>
+        </div>
+      </section>
+
+      <!-- 二 精选 -->
+      <section class="block" id="picks" aria-labelledby="pkTitle">
+        <div class="block-head">
+          <h2 id="pkTitle">精选排查记录</h2>
+          <span class="sub">按复现成本从低到高排列</span>
+        </div>
+        <div class="pick-grid">
+          <article class="pick-card big">
+            <img src="https://picsum.photos/seed/bt7086-route/760/420" width="760" height="420" loading="lazy" alt="线路排查示意图：主域名、跳转与备用入口三层结构">
+            <div class="pick-body">
+              <span class="kicker">跳转链</span>
+              <h3>旧书签打不开时，先看第三跳落到哪个入口</h3>
+              <p>11 月 2 日换证书后，主域名会先跳到中转页，再落到新入口。前两跳仍返回 200，但页面里的脚本需要第三跳完成，浏览器拦截混合内容时整页停在白屏。用开发者工具的 Network 面板按顺序看三个请求，能在一分钟内判断到底卡在哪一跳。</p>
+              <div class="meta">11 月 7 日 21:15 复现 · 涉及节点：主入口、B1</div>
+            </div>
+          </article>
+          <article class="pick-card">
+            <img src="https://picsum.photos/seed/bt7086-port/400/300" width="400" height="300" loading="lazy" alt="端口配置对比图：8081 与 8443 的握手差异">
+            <div class="pick-body">
+              <span class="kicker">端口</span>
+              <h3>B2 备用线路端口 8081 改 8443</h3>
+              <p>旧端口还能连上，只是握手阶段被重置。改地址栏端口后一次成功，不需要换线路。</p>
+              <div class="meta">11 月 5 日变更 · 已复核</div>
+            </div>
+          </article>
+          <article class="pick-card">
+            <img src="https://picsum.photos/seed/bt7086-node7/400/300" width="400" height="300" loading="lazy" alt="镜像节点 M7 在晚间时段的连接超时记录">
+            <div class="pick-body">
+              <span class="kicker">节点</span>
+              <h3>M7 镜像晚间 20:40 后超时</h3>
+              <p>同一时段 M3、M5 正常，说明不是整域封锁。切到 M5 可立即恢复。</p>
+              <div class="meta">11 月 6 日起 · 持续观察</div>
+            </div>
+          </article>
+          <article class="pick-card">
+            <img src="https://picsum.photos/seed/bt7086-dns/400/300" width="400" height="300" loading="lazy" alt="" style="height:150px">
+            <div class="pick-body" style="display:none"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 三 最新更新 -->
+      <section class="block" id="updates" aria-labelledby="upTitle">
+        <div class="block-head">
+          <h2 id="upTitle">11 月 8 日更新记录</h2>
+          <span class="sub">每条对应一次可核对变更</span>
+        </div>
+        <div class="card pad">
+          <ul class="updates">
+            <li>
+              <time datetime="2026-11-08">11-08 09:20</time>
+              <div><b>B2 端口变更复核通过<span class="badge b-fix">已修复</span></b><span>从 8081 改到 8443 后连续 3 次抽样均返回 200，证书链完整。</span></div>
+            </li>
+            <li>
+              <time datetime="2026-11-08">11-08 08:05</time>
+              <div><b>M7 节点在 07:30—08:00 短暂恢复</b><span>移动线路可用，电信线路 08:02 再次超时，判断为单线问题。</span></div>
+            </li>
+            <li>
+              <time datetime="2026-11-07">11-07 22:40</time>
+              <div><b>主域名跳转链第三跳改为相对路径<span class="badge b-warn">需清缓存</span></b><span>旧缓存可能仍请求绝对路径，清一次站点数据即可。</span></div>
+            </li>
+            <li>
+              <time datetime="2026-11-07">11-07 16:10</time>
+              <div><b>新增 B5 备用线路</b><span>端口同样为 8443，与 B2 共用证书，实测首次连接约 2.4 秒。</span></div>
+            </li>
+            <li>
+              <time datetime="2026-11-06">11-06 20:40</time>
+              <div><b>M7 首次出现晚间超时</b><span>连续 6 次请求耗时超过 15 秒，M3、M5 同期正常。</span></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 四 分类 -->
+      <section class="block" id="channels" aria-labelledby="chTitle">
+        <div class="block-head">
+          <h2 id="chTitle">按故障类型找分类</h2>
+          <span class="sub">括号内为收录条目数</span>
+        </div>
+        <div class="tag-index">
+          <a href="/#picks">主域名 302 跳转异常 <i>4</i></a>
+          <a href="/#picks">备用线路端口 8443 修改 <i>3</i></a>
+          <a href="/#guide">镜像节点连接超时排查 <i>5</i></a>
+          <a href="/#analysis">旧书签缓存导致白屏 <i>2</i></a>
+          <a href="/#faq">移动端与桌面端差异 <i>3</i></a>
+          <a href="/#faq">证书链不完整提示 <i>2</i></a>
+          <a href="/#news">11 月线路变更资讯 <i>4</i></a>
+          <a href="/#rank">可直连线路排行 <i>6</i></a>
+          <a href="/#timeline">11 月 3 日起故障时间线 <i>7</i></a>
+          <a href="/#comments">用户实测反馈汇总 <i>8</i></a>
+        </div>
+      </section>
+
+      <!-- 五 深度解析 -->
+      <section class="block" id="analysis" aria-labelledby="anTitle">
+        <div class="block-head">
+          <h2 id="anTitle">深度解析：失效判定要拆成三段</h2>
+          <span class="sub">全页唯一主体阅读区</span>
+        </div>
+        <div class="analysis">
+          <div class="analysis-body">
+            <p class="claim"><b>核心判断：</b>11 月这轮“打不开”，超过一半属于跳转链和端口的配置差异，真正被彻底作废的入口只有 1 个（旧的主域名 A 记录地址）。把失效当成一个整体去问“还能不能用”，答案永远是模糊的；拆成“跳转是否完成、端口是否握手、节点是否超时”三段，每段都有独立的核对办法。</p>
+
+            <h3>跳转链：302 不是故障，停在第二跳才是</h3>
+            <p>11 月 2 日 14:30 之后，主域名对旧书签请求返回 302，Location 指向中转页；中转页再跳一次落到新入口。实测在三台设备上，第一次请求都在 200ms 内返回，问题集中在中转页加载完成后。用 curl 看响应头最直接：连续两次 -L 能看到三行 HTTP 状态，第二行若是 200 而第三行缺失，说明浏览器在中转页被脚本阻断。11 月 7 日 22:40 第三跳改相对路径后，这个问题在桌面端消失，移动端 Safari 仍有 2 例停在第二跳，需要清一次站点数据。</p>
+
+            <h3>端口：8081 与 8443 的握手差异</h3>
+            <p>B2 线路在 11 月 5 日 15:00 切换监听端口。旧端口不是直接拒绝连接，而是完成 TCP 三次握手后，在 TLS 阶段被重置，所以表现成“页面一直转圈”而不是“无法访问此网站”。这个差异有排查价值：如果报错是连接被重置，优先怀疑端口；如果是 DNS 解析失败，先查域名。B5 新增线路同样使用 8443，与 B2 共用证书，切换成本低。11 月 8 日抽样中，B2 连续 3 次返回 200，B5 首次连接 2.4 秒，后续稳定在 0.9 秒左右。</p>
+
+            <h3>节点：M7 的单线超时与整域封锁不同</h3>
+            <p>11 月 6 日 20:40 起，M7 在电信线路连续 6 次请求耗时超过 15 秒，同期 M3、M5 在同一时段 3 次抽样均低于 1.2 秒。若为整域封锁，三个节点应同时异常；实测不是。11 月 8 日 07:30—08:00 移动线路短暂恢复，进一步说明问题落在 M7 所在机房的单线出口。把 M7 从常用列表移除、默认用 M5 即可，不需要修改任何地址配置。</p>
+
+            <h3>可核对的判断清单</h3>
+            <ul class="checklist">
+              <li>地址栏域名未变、页面白屏 → 查跳转链第三跳，11 月 7 日后此问题应消失</li>
+              <li>提示连接被重置 → 查端口，B2、B5 用 8443</li>
+              <li>电信线路超时、移动线路可用 → 指向 M7 单线问题</li>
+              <li class="no">DNS 解析失败 → 与本次三类故障无关，先查本地网络</li>
+              <li class="no">证书过期警告 → 11 月 2 日已换证书，出现该提示多为系统时间错误</li>
+            </ul>
+
+            <h3>说法差异：两条用户反馈相互矛盾的处理方式</h3>
+            <p>11 月 7 日有两位用户对同一现象给出相反结论。一位在论坛（账号 “lin_1107”）说清缓存后恢复，另一位（账号 “zhouk”）说清缓存反而更糟、必须手动改回旧入口。核对两人的设备与时间：前者在桌面 Chrome，后者在移动端，且后者操作时间在 11 月 7 日 22:40 改动之前。改动之后相对路径生效，手动改回旧入口反而会触发新的跳转。两条反馈都真实，但适用时段不同，不能互相否定。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 六 体验指南 -->
+      <section class="block" id="guide" aria-labelledby="gdTitle">
+        <div class="block-head">
+          <h2 id="gdTitle">三步排查体验指南</h2>
+          <span class="sub">按顺序做，多数情况三分钟内定位</span>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <h3>看请求停在哪个域名</h3>
+            <p>打开开发者工具的 Network，刷新一次。若第三条请求缺失，问题在跳转链；地址栏域名原样不动却白屏，基本可确定是中转页被阻断。</p>
+          </div>
+          <div class="step">
+            <h3>确认端口与线路编号</h3>
+            <p>B2、B5 统一用 8443。报错“连接被重置”时，把地址中的 8081 手工改成 8443 再试一次，不要急着换线路。</p>
+          </div>
+          <div class="step">
+            <h3>换节点验证是否单线</h3>
+            <p>M7 超时就切 M5。若三个节点同时不可用，再考虑整域问题；只 M7 异常，说明是单个机房出口。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 七 FAQ -->
+      <section class="block faq" id="faq" aria-labelledby="fqTitle">
+        <div class="block-head">
+          <h2 id="fqTitle">常见问答</h2>
+          <span class="sub">按提问频率排序</span>
+        </div>
+        <details>
+          <summary>主域名打开后地址变了，是地址失效了吗？</summary>
+          <div class="ans">不是彻底失效。11 月 2 日换证书后，主域名对旧书签先返回 302 跳到中转页，再落到新入口。三跳全部完成才显示内容；停在第二跳时页面白屏，但域名本身仍有效。清一次站点数据或等第三跳的相对路径缓存刷新即可。</div>
+        </details>
+        <details>
+          <summary>B2 备用线路为什么 8081 打不开、8443 可以？</summary>
+          <div class="ans">B2 在 11 月 5 日 15:00 把监听端口从 8081 改成 8443。旧端口仍能完成 TCP 握手，但在 TLS 阶段被重置，所以表现成一直转圈。手工把地址里的端口改成 8443，多数设备一次成功，不用换线路。</div>
+        </details>
+        <details>
+          <summary>M7 镜像节点晚上连不上，其他节点却正常？</summary>
+          <div class="ans">M7 从 11 月 6 日 20:40 起在电信线路连续超时，同类时段 M3、M5 的 3 次抽样均低于 1.2 秒。11 月 8 日 07:30 移动线路短暂恢复，说明问题落在 M7 所在机房的单线出口，而不是整域封锁。把默认节点切到 M5 即可。</div>
+        </details>
+        <details>
+          <summary>清缓存后反而更糟，该怎么办？</summary>
+          <div class="ans">先看操作时间。11 月 7 日 22:40 之前清缓存可能触发旧的绝对路径请求，之后改相对路径已修复。若清缓存后仍需手动改回旧入口，检查系统时间是否正确，时间偏差会导致证书校验失败，表现与跳转异常相似。</div>
+        </details>
+        <details>
+          <summary>手机端和桌面端表现不同，是设备问题吗？</summary>
+          <div class="ans">部分原因是。移动端 Safari 对混合内容更严格，中转页脚本被拦时停在第二跳的比例高于桌面 Chrome。11 月 7 日之后桌面端该问题消失，移动端仍有 2 例需要清站点数据。不是设备坏了，是跳转链对移动端的兼容还在收尾。</div>
+        </details>
+        <details>
+          <summary>出现证书过期提示，要换地址吗？</summary>
+          <div class="ans">先查系统时间。11 月 2 日已换证书，正常设备不应出现该提示。若系统时间正确仍报过期，多为中间证书链未完整下发，可换 B1 或 B3 线路验证；两者证书链完整，11 月 8 日抽样均返回 200。</div>
+        </details>
+      </section>
+
+      <!-- 八 用户评论 -->
+      <section class="block" id="comments" aria-labelledby="cmTitle">
+        <div class="block-head">
+          <h2 id="cmTitle">用户实测反馈</h2>
+          <span class="sub">来自 11 月 5 日—11 月 8 日的公开留言</span>
+        </div>
+        <div class="comments">
+          <div class="cmt">
+            <p>按教程把 B2 的 8081 改成 8443，一次就通了。之前一直以为线路挂了，白折腾半小时。</p>
+            <div class="who"><span class="avatar">林</span>lin_1107 · 11-07</div>
+          </div>
+          <div class="cmt mid">
+            <p>M7 我这边电信确实不行，切 M5 秒开。但同事说他那边 M7 正常，估计跟运营商有关。</p>
+            <div class="who"><span class="avatar">周</span>zhouk · 11-07</div>
+          </div>
+          <div class="cmt">
+            <p>清缓存那步我没做，直接换的 B1，也能用。第三跳到底是不是必走，还是看设备？</p>
+            <div class="who"><span class="avatar">陈</span>chen_abc · 11-06</div>
+          </div>
+          <div class="cmt mid">
+            <p>主域名跳转那个 302 我抓包看了，确实是三行状态。不过移动端 Safari 还是白屏，清了站点数据才好。</p>
+            <div class="who"><span class="avatar">吴</span>wuxy · 11-08</div>
+          </div>
+          <div class="cmt">
+            <p>B5 新线路我试了，第一次 2 秒多，后面挺快。就是跟 B2 共用证书，切换时别把旧书签一起删。</p>
+            <div class="who"><span class="avatar">赵</span>zhao_88 · 11-08</div>
+          </div>
+          <div class="cmt mid">
+            <p>说句不客气的，M7 这问题从 6 号拖到 8 号还没彻底解决，只靠切节点绕过去，不算修好。</p>
+            <div class="who"><span class="avatar">何</span>he_m · 11-08</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 九 资讯 -->
+      <section class="block" id="news" aria-labelledby="nwTitle">
+        <div class="block-head">
+          <h2 id="nwTitle">近期线路变更资讯</h2>
+          <span class="sub">每条都给出变更时间与影响范围</span>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <h3>11 月 7 日第三跳改相对路径</h3>
+            <p>22:40 生效。影响桌面端白屏问题，移动端 Safari 仍需清站点数据。旧缓存可能在 48 小时内继续请求绝对路径。</p>
+          </article>
+          <article class="news-card">
+            <h3>11 月 5 日 B2 端口切换</h3>
+            <p>15:00 起监听 8443。旧端口连接被重置，未同步更新地址的设备表现为一直转圈。</p>
+          </article>
+          <article class="news-card">
+            <h3>11 月 2 日主域名换证书</h3>
+            <p>14:30 完成。旧书签请求开始走 302 跳转，证书链由 B1 与 B3 共用，正常设备不应再报过期。</p>
+          </article>
+          <article class="news-card">
+            <h3>11 月 7 日新增 B5 备用线路</h3>
+            <p>16:10 上线，端口 8443。首次连接约 2.4 秒，后续稳定在 0.9 秒左右，适合作为 B2 的替代。</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 十 榜单 -->
+      <section class="block" id="rank" aria-labelledby="rkTitle">
+        <div class="block-head">
+          <h2 id="rkTitle">可直连线路排行</h2>
+          <span class="sub">按 11 月 8 日三次抽样平均耗时排序</span>
+        </div>
+        <div class="card pad">
+          <ol class="rank">
+            <li><div><b>B1 备用线路</b><small>证书链完整，桌面与移动端均正常</small></div><span class="score">0.7s</span></li>
+            <li><div><b>主入口（跳转完成）</b><small>需等第三跳，桌面端约 1.1 秒</small></div><span class="score">1.1s</span></li>
+            <li><div><b>B3 备用线路</b><small>与 B1 共用证书，偶发 1.4 秒</small></div><span class="score">1.3s</span></li>
+            <li><div><b>B5 新增线路</b><small>首次连接较慢，第二次起稳定</small></div><span class="score">0.9s</span></li>
+            <li><div><b>M5 镜像节点</b><small>晚间表现优于 M7，可作默认节点</small></div><span class="score">1.2s</span></li>
+            <li><div><b>B2 备用线路</b><small>需使用 8443 端口，否则连接重置</small></div><span class="score">1.6s</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 十一 时间线 -->
+      <section class="block" id="timeline" aria-labelledby="tlTitle">
+        <div class="block-head">
+          <h2 id="tlTitle">11 月 3 日起故障时间线</h2>
+          <span class="sub">只收录有明确时间与观测动作的节点</span>
+        </div>
+        <ul class="timeline">
+          <li><b>主域名跳转首次被记录</b><span>用户反馈旧书签打开后网址变化，页面白屏。</span><time datetime="2026-11-03">11 月 3 日 上午</time></li>
+          <li><b>B2 端口切换前的最后一批正常记录</b><span>三次抽样均返回 200，端口 8081。</span><time datetime="2026-11-05">11 月 5 日 14:00</time></li>
+          <li><b>B2 端口改为 8443</b><span>旧端口握手阶段被重置，转圈现象集中出现。</span><time datetime="2026-11-05">11 月 5 日 15:00</time></li>
+          <li><b>M7 晚间首次超时</b><span>电信线路连续 6 次耗时超过 15 秒。</span><time datetime="2026-11-06">11 月 6 日 20:40</time></li>
+          <li><b>B5 新增线路</b><span>端口同 B2，首次连接 2.4 秒。</span><time datetime="2026-11-07">11 月 7 日 16:10</time></li>
+          <li><b>第三跳改相对路径</b><span>桌面端白屏问题消失，移动端仍需清站点数据。</span><time datetime="2026-11-07">11 月 7 日 22:40</time></li>
+          <li><b>M7 移动线路短暂恢复</b><span>07:30—08:00 可用，08:02 电信线路再次超时。</span><time datetime="2026-11-08">11 月 8 日 08:05</time></li>
+        </ul>
+      </section>
+
+      <!-- 十二 相关推荐 -->
+      <section class="block" id="recs" aria-labelledby="rcTitle">
+        <div class="block-head">
+          <h2 id="rcTitle">相关推荐</h2>
+          <span class="sub">按排查顺序串联的相关条目</span>
+        </div>
+        <div class="recs">
+          <a href="/#picks">主域名 302 跳转排查</a>
+          <a href="/#guide">B2 端口 8443 修改步骤</a>
+          <a href="/#analysis">M7 单线超时判断依据</a>
+          <a href="/#faq">清缓存后更糟怎么处理</a>
+          <a href="/#rank">可直连线路耗时排行</a>
+          <a href="/#news">11 月 2 日换证书资讯</a>
+          <a href="/#timeline">11 月 3 日起故障时间线</a>
+          <a href="/#comments">移动端 Safari 白屏反馈</a>
+          <a href="/#faq">证书过期提示先查系统时间</a>
+          <a href="/#updates">11 月 8 日更新记录</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 侧栏 -->
+    <aside class="side" aria-label="侧栏导航与提示">
+      <div class="side-box side-nav">
+        <h2>本页栏目</h2>
+        <ul id="sideNavList">
+          <li><a href="/#overview">线路概览</a></li>
+          <li><a href="/#picks">精选排查</a></li>
+          <li><a href="/#updates">更新记录</a></li>
+          <li><a href="/#channels">分类索引</a></li>
+          <li><a href="/#analysis">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">线路资讯</a></li>
+          <li><a href="/#rank">线路排行</a></li>
+          <li><a href="/#timeline">故障时间线</a></li>
+          <li><a href="/#recs">相关推荐</a></li>
+        </ul>
+      </div>
+      <div class="side-box">
+        <h2>观测说明</h2>
+        <p class="side-note">抽样方式为每日 3 次，分别在 08:00、14:00、21:00 各发起 3 次请求，记录首次响应与握手时间。数据为示例记录，用于说明排查顺序，不代表线路长期状态。</p>
+      </div>
+      <div class="side-box">
+        <h2>最容易踩的坑</h2>
+        <p class="side-note">看到连接被重置就先换线路，往往忽略端口。B2 与 B5 都用 8443，先改端口比换线路省事。</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<button id="toTop" aria-label="回到页面顶部" title="回到顶部">
+  <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="#14435c"/>
+            <path d="M8 10h16v3H8zM8 16h11v3H8zM8 22h7v3H8z" fill="#8fe3c6"/>
+            <circle cx="24" cy="22" r="3" fill="#f0b64a"/>
+          </svg>
+          1024 7086 bt失效地址
+        </div>
+        <p>把打不开的情况拆成跳转、端口、节点三段来看，记录的是时间、线路编号和采样结果。</p>
+        <p>页面数据为示例观测记录，用于说明排查顺序，线路状态以实际请求结果为准。</p>
+      </div>
+      <div>
+        <h3>排查入口</h3>
+        <ul>
+          <li><a href="/#picks">精选排查记录</a></li>
+          <li><a href="/#guide">三步体验指南</a></li>
+          <li><a href="/#analysis">深度解析</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>变更与数据</h3>
+        <ul>
+          <li><a href="/#updates">11 月 8 日更新</a></li>
+          <li><a href="/#timeline">故障时间线</a></li>
+          <li><a href="/#rank">线路耗时排行</a></li>
+          <li><a href="/#news">线路变更资讯</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>反馈</h3>
+        <ul>
+          <li><a href="/#comments">用户实测反馈</a></li>
+          <li><a href="/#channels">按故障类型分类</a></li>
+          <li><a href="/#recs">相关推荐</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>页面更新时间：2026 年 11 月 8 日 09:20，对应正文 B2 端口复核与 M7 移动线路观测。</span>
+      <span>© 2026 线路排查记录 · 示例数据</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var sticky = document.getElementById('stickyZone');
+  function setStickyHeight(){
+    if(sticky){document.documentElement.style.setProperty('--sticky-h', sticky.offsetHeight + 'px');}
+  }
+  setStickyHeight();
+  window.addEventListener('resize', setStickyHeight);
+
+  // 移动导航
+  var navToggle = document.getElementById('navToggle');
+  var topicNav = document.getElementById('topicNav');
+  if(navToggle && topicNav){
+    navToggle.addEventListener('click', function(){
+      var open = topicNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    topicNav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A' && window.innerWidth <= 1020){
+        topicNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  // 回到顶部
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 480){ toTop.classList.add('show'); }
+    else { toTop.classList.remove('show'); }
+  }, {passive:true});
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // 侧栏滚动高亮
+  var links = Array.prototype.slice.call(document.querySelectorAll('#sideNavList a'));
+  var targets = links.map(function(a){
+    var id = a.getAttribute('href').split('#')[1];
+    return document.getElementById(id);
+  });
+  function highlight(){
+    var pos = window.scrollY + (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-h')) || 90) + 40;
+    var active = 0;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].offsetTop <= pos){ active = i; }
+    }
+    links.forEach(function(l,i){ l.classList.toggle('active', i===active); });
+  }
+  window.addEventListener('scroll', highlight, {passive:true});
+  highlight();
+
+  // 本地搜索
+  var input = document.getElementById('siteSearch');
+  var result = document.getElementById('searchResult');
+  var data = [
+    {t:'主域名 302 跳转异常排查', id:'picks'},
+    {t:'备用线路端口 8081 改 8443', id:'picks'},
+    {t:'M7 镜像节点晚间超时', id:'picks'},
+    {t:'B2 端口变更复核通过', id:'updates'},
+    {t:'11 月 7 日第三跳改相对路径', id:'updates'},
+    {t:'故障类型分类索引', id:'channels'},
+    {t:'失效判定拆成三段', id:'analysis'},
+    {t:'三步排查体验指南', id:'guide'},
+    {t:'清缓存后反而更糟怎么办', id:'faq'},
+    {t:'证书过期提示先查系统时间', id:'faq'},
+    {t:'用户实测反馈汇总', id:'comments'},
+    {t:'近期线路变更资讯', id:'news'},
+    {t:'可直连线路耗时排行', id:'rank'},
+    {t:'11 月 3 日起故障时间线', id:'timeline'},
+    {t:'相关推荐条目', id:'recs'}
+  ];
+  function esc(s){return s.replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function doSearch(){
+    var q = input.value.trim().toLowerCase();
+    result.innerHTML = '';
+    if(!q){ result.classList.remove('open'); return; }
+    var hits = data.filter(function(d){ return d.t.toLowerCase().indexOf(q) > -1; });
+    if(hits.length === 0){
+      result.innerHTML = '<div class="empty">没有匹配“' + esc(input.value.trim()) + '”的条目，试试“端口”“M7”“跳转”。</div>';
+    } else {
+      hits.forEach(function(d){
+        var a = document.createElement('a');
+        a.href = '/#' + d.id;
+        a.textContent = d.t;
+        a.addEventListener('click', function(){ result.classList.remove('open'); });
+        result.appendChild(a);
+      });
+    }
+    result.classList.add('open');
+  }
+  input.addEventListener('input', doSearch);
+  input.addEventListener('focus', function(){ if(input.value.trim()) doSearch(); });
+  document.addEventListener('click', function(e){
+    if(result.classList.contains('open') && !result.contains(e.target) && e.target !== input){
+      result.classList.remove('open');
+    }
+  });
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ result.classList.remove('open'); input.blur(); }
+  });
+
+  // 锚点平滑滚动偏移已由 scroll-margin-top 处理
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "1024 7086 bt失效地址",
+  "description": "1024 7086 bt失效地址线路与节点排查记录，含跳转链、端口变更与镜像节点超时的观测数据。",
+  "inLanguage": "zh-CN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "主域名打开后地址变了，是地址失效了吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "不是彻底失效。11 月 2 日换证书后，主域名对旧书签先返回 302 跳到中转页，再落到新入口。三跳全部完成才显示内容；停在第二跳时页面白屏，但域名本身仍有效。清一次站点数据或等第三跳的相对路径缓存刷新即可。"}
+    },
+    {
+      "@type": "Question",
+      "name": "B2 备用线路为什么 8081 打不开、8443 可以？",
+      "acceptedAnswer": {"@type": "Answer", "text": "B2 在 11 月 5 日 15:00 把监听端口从 8081 改成 8443。旧端口仍能完成 TCP 握手，但在 TLS 阶段被重置，所以表现成一直转圈。手工把地址里的端口改成 8443，多数设备一次成功。"}
+    },
+    {
+      "@type": "Question",
+      "name": "M7 镜像节点晚上连不上，其他节点却正常？",
+      "acceptedAnswer": {"@type": "Answer", "text": "M7 从 11 月 6 日 20:40 起在电信线路连续超时，同类时段 M3、M5 的抽样均低于 1.2 秒。11 月 8 日 07:30 移动线路短暂恢复，说明问题落在 M7 所在机房的单线出口，而不是整域封锁。把默认节点切到 M5 即可。"}
+    },
+    {
+      "@type": "Question",
+      "name": "清缓存后反而更糟，该怎么办？",
+      "acceptedAnswer": {"@type": "Answer", "text": "先看操作时间。11 月 7 日 22:40 之前清缓存可能触发旧的绝对路径请求，之后改相对路径已修复。若清缓存后仍需手动改回旧入口，检查系统时间是否正确，时间偏差会导致证书校验失败。"}
+    },
+    {
+      "@type": "Question",
+      "name": "手机端和桌面端表现不同，是设备问题吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "部分原因是。移动端 Safari 对混合内容更严格，中转页脚本被拦时停在第二跳的比例高于桌面 Chrome。11 月 7 日之后桌面端该问题消失，移动端仍有 2 例需要清站点数据。"}
+    },
+    {
+      "@type": "Question",
+      "name": "出现证书过期提示，要换地址吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "先查系统时间。11 月 2 日已换证书，正常设备不应出现该提示。若系统时间正确仍报过期，多为中间证书链未完整下发，可换 B1 或 B3 线路验证。"}
+    }
+  ]
+}
+</script>
+</body>
+          </html>
