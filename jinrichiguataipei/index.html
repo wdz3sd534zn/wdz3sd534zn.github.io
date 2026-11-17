@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日吃瓜taipei nana-台北文娱事件追踪</title>
+<meta name="description" content="今日吃瓜taipei nana聚焦台北文娱现场与网络话题：梳理近期演出争议、社交平台爆料与创作者回应，整理时间线、核对信息源、区分事实与转述，提供可读的事件脉络与讨论入口。">
+<meta name="keywords" content="今日吃瓜taipei nana">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Cpath d='M20 40c6-3 9-3 12 0s6 3 12 0' fill='none' stroke='%23fef3c7' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='26' r='3.5' fill='%23fef3c7'/%3E%3Ccircle cx='40' cy='26' r='3.5' fill='%23fef3c7'/%3E%3C/svg%3E">
+<style>
+:root{
+  --teal:#0f766e;
+  --teal-dark:#134e4a;
+  --teal-light:#ccfbf1;
+  --amber:#b45309;
+  --amber-light:#fef3c7;
+  --ink:#1c1917;
+  --ink-soft:#44403c;
+  --muted:#78716c;
+  --line:#e7e5e4;
+  --paper:#faf9f7;
+  --card:#ffffff;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 1px 2px rgba(28,25,23,.06),0 8px 24px -16px rgba(28,25,23,.25);
+  --maxw:1180px;
+  --stick-h:96px;
+  --fs-base:16px;
+  --fs-sm:.875rem;
+  --fs-xs:.78rem;
+  --fs-h2:1.5rem;
+  --fs-h3:1.12rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--stick-h)}
+body{
+  margin:0;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  color:var(--ink);background:var(--paper);line-height:1.75;font-size:var(--fs-base);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--teal-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+
+/* ===== 吸顶区：公告条 + 页头 ===== */
+.sticky-shell{position:sticky;top:0;z-index:100}
+.announce{
+  background:var(--teal-dark);color:#f0fdfa;font-size:var(--fs-sm);
+  padding:7px 16px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
+}
+.announce .tag{background:var(--amber);color:#fff;font-weight:700;font-size:var(--fs-xs);padding:1px 8px;border-radius:999px;letter-spacing:.04em}
+.announce a{color:#fef3c7;text-decoration:underline;text-underline-offset:2px}
+.site-header{background:rgba(250,249,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(28,25,23,.03)}
+.header-inner{max-width:var(--maxw);margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand svg{width:38px;height:38px;flex:none}
+.brand-name{font-weight:800;font-size:1.02rem;letter-spacing:.01em;color:var(--teal-dark)}
+.main-nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.main-nav a{font-size:var(--fs-sm);color:var(--ink-soft);padding:6px 10px;border-radius:var(--radius-sm);white-space:nowrap}
+.main-nav a:hover{background:var(--teal-light);color:var(--teal-dark);text-decoration:none}
+.header-tools{display:flex;align-items:center;gap:10px}
+.search-wrap{position:relative;display:flex;align-items:center}
+.search-wrap input{
+  width:190px;padding:7px 10px 7px 32px;border:1px solid var(--line);border-radius:999px;
+  font-size:var(--fs-sm);background:#fff;color:var(--ink);transition:border-color .15s;
+}
+.search-wrap input:focus{border-color:var(--teal);outline:none}
+.search-wrap svg{position:absolute;left:10px;width:15px;height:15px;color:var(--muted);pointer-events:none}
+.search-feedback{font-size:var(--fs-xs);color:var(--amber);margin-left:8px;min-width:0}
+.menu-toggle{display:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:6px 10px;font-size:var(--fs-sm);cursor:pointer;color:var(--ink);align-items:center;gap:6px}
+.menu-toggle svg{width:16px;height:16px}
+.search-hit{background:var(--amber-light);outline:1px solid var(--amber)}
+
+/* ===== 首屏 ===== */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#f0fdfa 0%,#faf9f7 55%,#fffbeb 100%);border-bottom:1px solid var(--line)}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:48px 20px 44px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:36px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);font-weight:700;letter-spacing:.12em;color:var(--teal-dark);background:var(--teal-light);padding:4px 12px;border-radius:999px;margin-bottom:16px}
+.hero-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(1.75rem,3.6vw,2.6rem);letter-spacing:.01em;color:var(--teal-dark);margin-bottom:16px}
+.hero-lead{font-size:1.02rem;color:var(--ink-soft);max-width:560px;margin-bottom:22px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-size:var(--fs-sm);font-weight:700;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s;text-decoration:none}
+.btn:hover{text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-primary:hover{background:var(--teal-dark);color:#fff}
+.btn-ghost{background:#fff;color:var(--teal-dark);border-color:var(--teal-light)}
+.hero-stats{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
+.hero-stats div{min-width:0}
+.hero-stats strong{display:block;font-size:1.4rem;color:var(--teal-dark);line-height:1.2}
+.hero-stats span{font-size:var(--fs-xs);color:var(--muted)}
+.hero-art{position:relative;min-height:280px}
+.hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 28px rgba(19,78,74,.18))}
+.art-note{position:absolute;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow);font-size:var(--fs-xs);padding:6px 11px;color:var(--ink-soft);white-space:nowrap}
+.art-note b{color:var(--teal-dark)}
+.art-note.n1{top:6%;left:-2%;transform:rotate(-2deg)}
+.art-note.n2{bottom:16%;right:-2%;transform:rotate(1.5deg)}
+.art-note.n3{bottom:-2%;left:10%;transform:rotate(-1deg)}
+
+/* ===== 主布局 ===== */
+.layout{max-width:var(--maxw);margin:0 auto;padding:40px 20px 64px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+main{min-width:0}
+aside{position:sticky;top:calc(var(--stick-h) + 14px);min-width:0}
+section{margin-bottom:52px;scroll-margin-top:var(--stick-h)}
+.section-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.section-head h2{font-size:var(--fs-h2);color:var(--teal-dark)}
+.section-head .kicker{font-size:var(--fs-xs);font-weight:700;letter-spacing:.14em;color:var(--amber);text-transform:uppercase}
+.section-sub{color:var(--muted);font-size:var(--fs-sm);margin-bottom:20px;max-width:720px}
+
+/* 概览 */
+.overview{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.overview p+p{margin-top:12px}
+.overview p{color:var(--ink-soft)}
+.ov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-radius:var(--radius-sm);overflow:hidden;margin-top:20px}
+.ov-grid div{background:#fff;padding:14px 12px}
+.ov-grid strong{display:block;font-size:1.15rem;color:var(--teal-dark)}
+.ov-grid span{font-size:var(--fs-xs);color:var(--muted)}
+
+/* 精选卡片 */
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card-media{aspect-ratio:16/10;overflow:hidden;background:var(--teal-light)}
+.card-media img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-tag{font-size:var(--fs-xs);font-weight:700;color:var(--amber);letter-spacing:.03em}
+.card h3{font-size:1rem;color:var(--ink)}
+.card p{font-size:var(--fs-sm);color:var(--ink-soft)}
+.card-meta{margin-top:auto;font-size:var(--fs-xs);color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.card-meta time{font-variant-numeric:tabular-nums}
+
+/* 最新更新：紧凑列表 */
+.update-list{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden}
+.update-item{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:14px;padding:14px 18px;align-items:baseline;border-bottom:1px solid var(--line)}
+.update-item:last-child{border-bottom:none}
+.update-item time{font-size:var(--fs-xs);color:var(--teal-dark);font-weight:700;font-variant-numeric:tabular-nums}
+.update-item h3{font-size:.96rem;font-weight:600;color:var(--ink)}
+.update-item p{font-size:var(--fs-xs);color:var(--muted);margin-top:2px}
+.update-item .badge{font-size:var(--fs-xs);padding:2px 9px;border-radius:999px;background:var(--teal-light);color:var(--teal-dark);font-weight:700;white-space:nowrap}
+.update-item .badge.amber{background:var(--amber-light);color:var(--amber)}
+
+/* 分类标签索引 */
+.channel-index{display:flex;flex-wrap:wrap;gap:10px}
+.channel-index a{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:var(--fs-sm);color:var(--ink-soft);transition:border-color .15s,background .15s}
+.channel-index a:hover{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);text-decoration:none}
+.channel-index em{font-style:normal;font-size:var(--fs-xs);color:var(--muted)}
+
+/* 深度解析 */
+.deep{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.deep h2{margin-bottom:4px}
+.deep .byline{font-size:var(--fs-xs);color:var(--muted);margin-bottom:20px}
+.deep h3{font-size:var(--fs-h3);color:var(--teal-dark);margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--amber)}
+.deep h3:first-of-type{margin-top:6px}
+.deep p{margin-bottom:12px;color:var(--ink-soft)}
+.deep p strong{color:var(--ink)}
+.claim{background:var(--amber-light);border-left:4px solid var(--amber);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;margin:16px 0;font-size:.96rem;color:var(--ink)}
+.claim b{color:var(--amber);display:block;font-size:var(--fs-xs);letter-spacing:.1em;margin-bottom:5px}
+.compare{width:100%;border-collapse:collapse;font-size:var(--fs-sm);margin:14px 0 18px;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+.compare th,.compare td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.compare th{background:var(--teal-light);color:var(--teal-dark);font-size:var(--fs-xs);letter-spacing:.03em}
+.compare tr:last-child td{border-bottom:none}
+.compare td:first-child{font-weight:700;color:var(--ink);width:30%}
+.timeline-embed{border-left:2px solid var(--teal-light);margin:16px 0 20px;padding-left:18px;display:flex;flex-direction:column;gap:12px}
+.timeline-embed div{position:relative;font-size:var(--fs-sm);color:var(--ink-soft)}
+.timeline-embed div::before{content:"";position:absolute;left:-24px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--teal);border:2px solid #fff;box-shadow:0 0 0 1px var(--teal)}
+.timeline-embed time{font-weight:700;color:var(--teal-dark);font-size:var(--fs-xs);margin-right:8px;font-variant-numeric:tabular-nums}
+
+/* 体验指南：编号步骤 */
+.steps{counter-reset:step;display:flex;flex-direction:column;gap:14px}
+.step{counter-increment:step;display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.step::before{content:counter(step,decimal-leading-zero);font-weight:800;font-size:1.15rem;color:var(--teal);font-variant-numeric:tabular-nums}
+.step h3{font-size:1rem;margin-bottom:5px}
+.step p{font-size:var(--fs-sm);color:var(--ink-soft)}
+
+/* FAQ */
+.faq details{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);margin-bottom:10px;overflow:hidden}
+.faq summary{padding:15px 18px;font-weight:700;font-size:.96rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.25rem;color:var(--teal);font-weight:400;flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details[open] summary{border-bottom:1px solid var(--line);background:var(--teal-light)}
+.faq .answer{padding:14px 18px 18px;font-size:var(--fs-sm);color:var(--ink-soft)}
+.faq .answer p+p{margin-top:8px}
+
+/* 评论 */
+.comment-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comment{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.comment header{display:flex;align-items:center;gap:9px}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);font-size:var(--fs-xs);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.comment .who{font-size:var(--fs-sm);font-weight:700}
+.comment .when{font-size:var(--fs-xs);color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.comment p{font-size:var(--fs-sm);color:var(--ink-soft)}
+.comment .target{font-size:var(--fs-xs);color:var(--teal-dark);background:var(--teal-light);padding:2px 8px;border-radius:var(--radius-sm);align-self:flex-start}
+
+/* 相关资讯 */
+.news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.news{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:7px}
+.news .src{font-size:var(--fs-xs);color:var(--amber);font-weight:700}
+.news h3{font-size:.97rem}
+.news p{font-size:var(--fs-sm);color:var(--ink-soft)}
+.news time{font-size:var(--fs-xs);color:var(--muted);margin-top:auto;font-variant-numeric:tabular-nums}
+
+/* 榜单 */
+.rank{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:8px 0;box-shadow:var(--shadow)}
+.rank ol{display:flex;flex-direction:column}
+.rank li{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line)}
+.rank li:last-child{border-bottom:none}
+.rank .no{font-weight:800;font-size:1.05rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.rank li:nth-child(-n+3) .no{color:var(--amber)}
+.rank .t{font-size:var(--fs-sm);font-weight:600}
+.rank .t span{display:block;font-size:var(--fs-xs);color:var(--muted);font-weight:400;margin-top:1px}
+.rank .score{font-size:var(--fs-xs);color:var(--teal-dark);font-weight:700;white-space:nowrap}
+
+/* 相关推荐标签 */
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tags a{font-size:var(--fs-sm);padding:7px 14px;border-radius:var(--radius-sm);background:#fff;border:1px solid var(--line);color:var(--ink-soft)}
+.tags a:hover{background:var(--amber-light);border-color:var(--amber);color:var(--amber);text-decoration:none}
+
+/* 侧栏 */
+.side-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.side-card h2{font-size:1rem;margin-bottom:6px;color:var(--teal-dark)}
+.side-card .hint{font-size:var(--fs-xs);color:var(--muted);margin-bottom:12px}
+.side-nav{display:flex;flex-direction:column;gap:2px}
+.side-nav a{font-size:var(--fs-sm);padding:7px 10px;border-radius:var(--radius-sm);color:var(--ink-soft);border-left:3px solid transparent;transition:background .15s}
+.side-nav a:hover{background:var(--paper);text-decoration:none}
+.side-nav a.active{background:var(--teal-light);color:var(--teal-dark);border-left-color:var(--teal);font-weight:700}
+.side-list{display:flex;flex-direction:column;gap:11px}
+.side-list div{font-size:var(--fs-sm);color:var(--ink-soft);padding-bottom:11px;border-bottom:1px dashed var(--line)}
+.side-list div:last-child{border-bottom:none;padding-bottom:0}
+.side-list b{display:block;font-size:var(--fs-xs);color:var(--teal-dark);margin-bottom:2px}
+.side-list time{color:var(--muted);font-size:var(--fs-xs);font-variant-numeric:tabular-nums}
+
+/* 回到顶部 */
+.to-top{position:fixed;right:20px;bottom:24px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--teal-dark);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s,transform .2s;z-index:90}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top svg{width:18px;height:18px}
+
+/* 页尾 */
+.site-footer{background:var(--teal-dark);color:#d6f5ef;margin-top:0}
+.footer-inner{max-width:var(--maxw);margin:0 auto;padding:44px 20px 26px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.footer-brand svg{width:34px;height:34px}
+.footer-brand strong{font-size:1.02rem;color:#fff}
+.footer-desc{font-size:var(--fs-sm);color:#a7e3da;max-width:300px}
+.footer-col h3{font-size:var(--fs-sm);color:#fff;margin-bottom:10px;letter-spacing:.04em}
+.footer-col a{display:block;font-size:var(--fs-sm);color:#a7e3da;padding:3px 0}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:16px 20px;max-width:var(--maxw);margin:0 auto;font-size:var(--fs-xs);color:#8fcfc6;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* 平板 */
+@media (max-width:1024px){
+  .layout{grid-template-columns:1fr;gap:36px}
+  aside{position:static;order:2}
+  main{order:1}
+  .hero-inner{grid-template-columns:1fr;gap:26px}
+  .hero-art{min-height:0;max-width:440px}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .ov-grid{grid-template-columns:repeat(2,1fr)}
+  .main-nav{margin-left:0;order:3;width:100%;display:none}
+  .main-nav.open{display:flex}
+  .menu-toggle{display:inline-flex}
+  .search-wrap input{width:150px}
+}
+/* 手机 */
+@media (max-width:640px){
+  :root{--stick-h:112px}
+  .header-inner{padding:9px 14px;gap:10px}
+  .brand-name{font-size:.95rem}
+  .search-wrap input{width:120px}
+  .search-feedback{display:none}
+  .layout{padding:26px 14px 48px}
+  .hero-inner{padding:30px 14px 32px}
+  .hero-stats{gap:16px}
+  .hero-stats strong{font-size:1.15rem}
+  .feature-grid,.comment-grid,.news-grid{grid-template-columns:1fr}
+  .update-item{grid-template-columns:1fr;gap:3px}
+  .update-item .badge{justify-self:start;margin-top:3px}
+  .deep{padding:20px 16px}
+  .compare{font-size:var(--fs-xs)}
+  .compare th,.compare td{padding:7px 8px}
+  .footer-inner{grid-template-columns:1fr;gap:22px;padding:34px 16px 20px}
+  .footer-bottom{flex-direction:column;gap:4px}
+  .to-top{right:14px;bottom:16px;width:40px;height:40px}
+  .announce{font-size:var(--fs-xs);padding:6px 12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover,.btn:hover{transform:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-shell">
+  <div class="announce" role="region" aria-label="更新公告">
+    <span class="tag">今日吃瓜taipei nana</span>
+    <span>11月7日 22:40 更新：南港展演退票争议第 3 次说明上线；西门町快闪「Nana 映像」排队规则变更，已标记为待核实。</span>
+    <a href="/#updates">查看更新</a>
+  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/#top" aria-label="今日吃瓜taipei nana 首页">
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect width="64" height="64" rx="14" fill="#0f766e"/>
+          <path d="M20 41c6-3 9-3 12 0s6 3 12 0" fill="none" stroke="#fef3c7" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="24" cy="26" r="3.5" fill="#fef3c7"/>
+          <circle cx="40" cy="26" r="3.5" fill="#fef3c7"/>
+          <path d="M13 18l4-2M51 18l-4-2" stroke="#fef3c7" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">今日吃瓜taipei nana</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" id="menuToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        频道
+      </button>
+      <nav class="main-nav" id="mainNav" aria-label="主题频道导航">
+        <a href="/#overview">现场概览</a>
+        <a href="/#featured">精选追踪</a>
+        <a href="/#updates">即时更新</a>
+        <a href="/#channels">话题入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">看瓜指南</a>
+        <a href="/#faq">常见疑问</a>
+        <a href="/#rank">热度榜</a>
+      </nav>
+      <div class="header-tools">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="siteSearch" type="search" placeholder="查事件/人物/场馆" aria-label="站内查找事件、人物或场馆">
+        </div>
+        <span class="search-feedback" id="searchFeedback" aria-live="polite"></span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">台北文娱现场观察</span>
+      <h1>今日吃瓜taipei nana</h1>
+      <p class="hero-lead">把台北街头与屏幕之间流动的话题，拆成可核对的时间、场馆、账号与说法。每周跟进 9 个常驻频道：展演退票、快闪排队、创作者联动、二手周边溢价，一条线索对应一份原始出处。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/#deep">读本期深度解析
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="/#updates">看 11 月 7 日更新</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>37</strong><span>本周收录事件</span></div>
+        <div><strong>9</strong><span>常驻频道</span></div>
+        <div><strong>128</strong><span>原始出处存档</span></div>
+        <div><strong>11/08</strong><span>信息核对时间</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 320" role="img">
+        <defs>
+          <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#134e4a"/>
+          </linearGradient>
+          <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/>
+          </linearGradient>
+        </defs>
+        <rect x="18" y="20" width="384" height="280" rx="20" fill="url(#gA)"/>
+        <circle cx="322" cy="84" r="42" fill="url(#gB)" opacity=".9"/>
+        <path d="M40 208c40-22 62-22 96 0s58 22 96 0 58-22 96 0" fill="none" stroke="#ccfbf1" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+        <rect x="52" y="108" width="118" height="10" rx="5" fill="#ccfbf1" opacity=".8"/>
+        <rect x="52" y="132" width="86" height="10" rx="5" fill="#ccfbf1" opacity=".5"/>
+        <rect x="52" y="156" width="102" height="10" rx="5" fill="#ccfbf1" opacity=".35"/>
+        <g fill="#fef3c7">
+          <circle cx="228" cy="140" r="4"/><circle cx="258" cy="168" r="3"/><circle cx="292" cy="132" r="4"/>
+          <circle cx="214" cy="196" r="3"/><circle cx="300" cy="210" r="4"/>
+        </g>
+        <path d="M196 250h148" stroke="#fde68a" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10" opacity=".7"/>
+      </svg>
+      <span class="art-note n1"><b>南港展演</b> 退票说明·11/07</span>
+      <span class="art-note n2"><b>西门町</b> 快闪排队规则·11/06</span>
+      <span class="art-note n3"><b>二手周边</b> 溢价区间收窄</span>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <main>
+
+    <!-- 01 领域概览 -->
+    <section id="overview" aria-labelledby="overview-h">
+      <div class="section-head">
+        <span class="kicker">01 / 概览</span>
+        <h2 id="overview-h">台北文娱话题的现场轮廓</h2>
+      </div>
+      <p class="section-sub">话题集中在四个场所类型：展演场馆、商圈快闪、影音园区、线上社群。它们的时间节奏并不一样。</p>
+      <div class="overview">
+        <p>台北的大型展演以台北流行音乐中心、台北小巨蛋、南港展览馆为主，票务争议往往在开演前 10 天集中出现。商圈快闪则由西门町、中山、信义三处轮换，排队规则由主办方自行公告，改规则比改场地常见。</p>
+        <p>线上讨论的主要平台是 Threads、Instagram 与 Dcard，账号类型分为主办方官方号、场馆号、创作者本人号与整理型账号。同一个事件，这四类账号给出的措辞差异，往往就是判断信息可靠度的第一手材料。</p>
+        <p>日期口径统一按台北时间（UTC+8）。跨夜活动的「当天」以 22:00 为分界，例如 11 月 6 日 23:30 发布的公告，归入 11 月 7 日的更新批次。</p>
+        <div class="ov-grid">
+          <div><strong>4 类</strong><span>场所类型</span></div>
+          <div><strong>3 处</strong><span>商圈快闪轮换点</span></div>
+          <div><strong>10 天</strong><span>票务争议高发窗口</span></div>
+          <div><strong>22:00</strong><span>跨夜归类分界</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 精选内容推荐 -->
+    <section id="featured" aria-labelledby="featured-h">
+      <div class="section-head">
+        <span class="kicker">02 / 精选</span>
+        <h2 id="featured-h">本期三条值得先看的线索</h2>
+      </div>
+      <p class="section-sub">每条线索附一个可回查的原始出处，以及目前仍未落定的那一环。</p>
+      <div class="feature-grid">
+        <article class="card">
+          <div class="card-media"><img src="https://picsum.photos/seed/nana-ticket/640/400" width="640" height="400" loading="lazy" alt="南港展览馆外排队退票的人群，手持票据与手机界面"></div>
+          <div class="card-body">
+            <span class="card-tag">票务争议</span>
+            <h3>南港展演退票说明的三版措辞</h3>
+            <p>主办方在 11/05、11/06、11/07 连发三次说明，「不可抗力」的表述逐版收窄，退票手续费从 10% 降到 0。</p>
+            <div class="card-meta"><time datetime="2026-11-07">11月7日</time><span>出处：主办方 IG 存档</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media"><img src="https://picsum.photos/seed/nana-queue/640/400" width="640" height="400" loading="lazy" alt="西门町快闪店门口拉起的排队动线与号码牌桌面"></div>
+          <div class="card-body">
+            <span class="card-tag">快闪现场</span>
+            <h3>「Nana 映像」快闪排队规则改动</h3>
+            <p>11/06 晚间把「先到先排」改为「线上取号 + 分时段进场」，现场号码牌改为两色，旧牌是否有效尚未回应。</p>
+            <div class="card-meta"><time datetime="2026-11-06">11月6日</time><span>出处：现场公告板照片</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media"><img src="https://picsum.photos/seed/nana-owner/640/400" width="640" height="400" loading="lazy" alt="二手周边摊位桌面，陈列徽章、海报与价目卡"></div>
+          <div class="card-body">
+            <span class="card-tag">二手周边</span>
+            <h3>限定徽章溢价从 3.2 倍收窄到 1.6 倍</h3>
+            <p>10/29 至 11/07 的 46 笔成交记录显示，开卖首日最高 980 元，11/07 挂价中位数回落到 490 元。</p>
+            <div class="card-meta"><time datetime="2026-11-07">11月7日</time><span>出处：交易平台成交截图</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 最新更新 -->
+    <section id="updates" aria-labelledby="updates-h">
+      <div class="section-head">
+        <span class="kicker">03 / 更新</span>
+        <h2 id="updates-h">11月6日至7日即时更新</h2>
+      </div>
+      <p class="section-sub">按发布时间倒序排列，标注信息等级：已核实、待核实、官方回应。</p>
+      <div class="update-list">
+        <div class="update-item">
+          <time datetime="2026-11-07T22:40">11/07 22:40</time>
+          <div><h3>南港展演主办方第三次说明：手续费全免</h3><p>声明中「不可抗力」改为「场地档期调整」，并承诺 11/12 前完成全额退费。</p></div>
+          <span class="badge">官方回应</span>
+        </div>
+        <div class="update-item">
+          <time datetime="2026-11-07T19:05">11/07 19:05</time>
+          <div><h3>西门町快闪现场出现两套号码牌</h3><p>旧白牌与新绿牌并行，现场工作人员未说明旧牌是否作废。</p></div>
+          <span class="badge amber">待核实</span>
+        </div>
+        <div class="update-item">
+          <time datetime="2026-11-07T15:20">11/07 15:20</time>
+          <div><h3>创作者 nana 本人限时动态补充说明</h3><p>提到「当天 14:30 才拿到调整后的动线图」，该时间点与场馆调度表一致。</p></div>
+          <span class="badge">已核实</span>
+        </div>
+        <div class="update-item">
+          <time datetime="2026-11-06T23:30">11/06 23:30</time>
+          <div><h3>快闪主办方夜间公告：改为线上取号</h3><p>公告发布在 IG 限时动态，24 小时后自动消失，目前仅剩截图存档。</p></div>
+          <span class="badge">官方回应</span>
+        </div>
+        <div class="update-item">
+          <time datetime="2026-11-06T12:10">11/06 12:10</time>
+          <div><h3>中山区二手周边市集本周摊位缩减至 14 摊</h3><p>较 10/30 的 22 摊减少 8 摊，主办方称与场地施工有关。</p></div>
+          <span class="badge">已核实</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 分类入口 -->
+    <section id="channels" aria-labelledby="channels-h">
+      <div class="section-head">
+        <span class="kicker">04 / 频道</span>
+        <h2 id="channels-h">按类别进入常驻频道</h2>
+      </div>
+      <p class="section-sub">9 个频道各自追踪一类固定对象，括号内为本周收录条数。</p>
+      <div class="channel-index">
+        <a href="/#deep">南港展览馆退票争议 <em>6</em></a>
+        <a href="/#updates">西门町快闪取号规则 <em>5</em></a>
+        <a href="/#rank">限定周边二手溢价 <em>8</em></a>
+        <a href="/#comments">创作者联动回应 <em>4</em></a>
+        <a href="/#news">台北小巨蛋档期异动 <em>3</em></a>
+        <a href="/#guide">商圈排队动线实测 <em>4</em></a>
+        <a href="/#faq">场馆入场安检须知 <em>2</em></a>
+        <a href="/#featured">中山市集摊位数变化 <em>3</em></a>
+        <a href="/#deep">Threads 整理号说法核对 <em>2</em></a>
+      </div>
+    </section>
+
+    <!-- 05 深度解析 -->
+    <section id="deep" aria-labelledby="deep-h">
+      <div class="deep">
+        <div class="section-head">
+          <span class="kicker">05 / 深度</span>
+          <h2 id="deep-h">一场退票争议里，三次改口到底改了什么</h2>
+        </div>
+        <p class="byline">信息核对时间 2026-11-08 · 材料范围：三版官方说明、场馆调度表、7 位购票者陈述</p>
+
+        <h3>版本差异：从「不可抗力」到「档期调整」，一字之差牵动退费比例</h3>
+        <p>11 月 5 日首版说明写的是「因不可抗力因素取消」，按购票条款，不可抗力情形下手续费为票面 10%。11 月 6 日第二版改为「主办方与场地档期调整」，同日 21:14 的贴文里仍保留「非主办方单方原因」的措辞。11 月 7 日第三版把两处都删掉，直接写「全额退费，11 月 12 日前完成」。</p>
+        <table class="compare">
+          <caption style="caption-side:bottom;font-size:.78rem;color:#78716c;padding-top:6px;text-align:left">三版说明的措辞与退费口径对照</caption>
+          <thead><tr><th scope="col">版本</th><th scope="col">原因表述</th><th scope="col">手续费</th></tr></thead>
+          <tbody>
+            <tr><td>11/05 首版</td><td>不可抗力因素取消</td><td>票面 10%</td></tr>
+            <tr><td>11/06 二版</td><td>场地档期调整，非单方原因</td><td>票面 5%</td></tr>
+            <tr><td>11/07 三版</td><td>场地档期调整</td><td>0，全额退费</td></tr>
+          </tbody>
+        </table>
+        <div class="claim"><b>可被反驳的判断</b>三次改口的驱动力不是措辞偏好，而是 11 月 6 日 20:00 前后出现的一份场地调度表截图。截图显示该档期在 10 月 28 日已被标注为「保留」，与「不可抗力」的说法在时间上冲突。</div>
+
+        <h3>时间线：10 月 28 日的保留标记与 11 月 5 日的公告</h3>
+        <div class="timeline-embed">
+          <div><time datetime="2026-10-28">10/28</time>场馆内部调度表出现「档期保留」标记，未见对外公告。</div>
+          <div><time datetime="2026-11-03">11/03</time>购票者陆续收到「演出可能异动」的简讯，未说明原因。</div>
+          <div><time datetime="2026-11-05">11/05</time>首版取消说明发布，引用「不可抗力」。</div>
+          <div><time datetime="2026-11-06">11/06</time>调度表截图在 Threads 流传，当晚二版说明调整措辞。</div>
+          <div><time datetime="2026-11-07">11/07</time>三版说明承诺全额退费。</div>
+        </div>
+
+        <h3>说法差异：7 位购票者中，4 位提到「简讯时间早于公告」</h3>
+        <p>7 位购票者的陈述里，4 位明确记得 11 月 3 日就收到异动简讯，比 11 月 5 日的正式公告早两天。这一细节把「临时取消」的解释空间压小了：如果 11 月 3 日已知情，那么公告里的「突发」二字需要重新解释。另有 2 位表示简讯来自售票平台而非主办方，平台客服在 11 月 6 日的回复中确认「简讯由主办方提供名单」。</p>
+        <p>需要标注的是，调度表截图的原始拍摄者未公开，截图本身存在被再编辑的可能。目前能确认的只有：截图中的档期编号与场馆 11 月公开排期表编号一致。</p>
+
+        <h3>规则前后变化：退票窗口从 7 天变成 14 天</h3>
+        <p>首版说明给出的退票申请期是 7 天，二版延长到 10 天，三版定为 14 天，截止 11 月 21 日。这个变化对已购票者的实际影响，是跨过 11 月 14 日另一场同系列演出的开票日，等于把选择权往后推了一周。主办方在第三版说明里没有解释这个天数是怎么定的。</p>
+        <p>把判断拆成可核对的三项：一看公告日期是否早于调度表标记（目前是晚于，8 天）；二看手续费降幅与措辞收窄是否同步（是，同步发生）；三看退票窗口是否覆盖关联场次开票日（是，覆盖 11 月 14 日）。三项里前两项指向「公告滞后于内部决策」，第三项指向「有意留住购票者的选择空间」。</p>
+      </div>
+    </section>
+
+    <!-- 06 体验指南 -->
+    <section id="guide" aria-labelledby="guide-h">
+      <div class="section-head">
+        <span class="kicker">06 / 指南</span>
+        <h2 id="guide-h">现场看快闪的四步准备</h2>
+      </div>
+      <p class="section-sub">以 11 月 6 日之后的西门町「Nana 映像」快闪为样本，规则已从先到先排改为线上取号。</p>
+      <div class="steps">
+        <div class="step">
+          <div>
+            <h3>先确认取号平台，不要直接去现场</h3>
+            <p>主办方把取号入口放在活动页而非 IG 主页，11 月 7 日 19:05 的现场两套号码牌，就是因为部分人仍带着旧白牌。出发前查活动页的「取号」按钮是否亮起。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>避开 14:00 至 16:30 的换场时段</h3>
+            <p>11 月 7 日实测，14:00 后每 30 分钟放行约 40 人，等候区从电影主题公园入口排到武昌街二段。上午 10:30 前平均等候 12 分钟。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>带可重复使用的证件夹，现场不提供号码牌套</h3>
+            <p>绿牌为薄纸卡，遇雨容易糊。11 月 6 日晚间一场小雨后，至少 5 人在社群反映号码难以辨认，需回柜台补印。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>周边限购按「人」不按「票」，同行者需各自取号</h3>
+            <p>限定徽章每人 2 枚，同行 3 人若只有 2 个号，只能买 4 枚。现场工作人员在 11 月 7 日 11:20 的口头说明与公告文字一致。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FAQ -->
+    <section id="faq" aria-labelledby="faq-h">
+      <div class="section-head">
+        <span class="kicker">07 / 问答</span>
+        <h2 id="faq-h">关于退票与取号的具体疑问</h2>
+      </div>
+      <p class="section-sub">答案以 11 月 7 日三版说明与现场公告为准，未落定处直接标注。</p>
+      <div class="faq">
+        <details>
+          <summary>南港展演的退票手续费现在是多少？</summary>
+          <div class="answer"><p>0。11 月 7 日第三版说明写明全额退费，不再收取首版的 10% 或二版的 5%。退费申请截止 11 月 21 日，款项承诺 11 月 12 日前完成。</p></div>
+        </details>
+        <details>
+          <summary>11 月 3 日收到的异动简讯算正式通知吗？</summary>
+          <div class="answer"><p>不算。那则简讯只写「演出可能异动」，没有日期、没有退票方式，售票平台客服 11 月 6 日确认名单由主办方提供。正式通知以 11 月 5 日的首版公告起算。</p></div>
+        </details>
+        <details>
+          <summary>西门町快闪的白牌还能用吗？</summary>
+          <div class="answer"><p>截至 11 月 8 日未见明确公告。现场出现白牌与绿牌并行，工作人员未说明旧牌是否作废，建议以活动页取号结果为准，白牌只作排队顺序参考。</p></div>
+        </details>
+        <details>
+          <summary>限定徽章二手价还会继续跌吗？</summary>
+          <div class="answer"><p>从 46 笔成交看，开卖首日最高 980 元，11 月 7 日挂价中位数 490 元，跌幅约一半。若 11 月 12 日前后没有新的补货公告，价格可能停在 450 至 520 元区间；补货则可能继续下探。</p></div>
+        </details>
+        <details>
+          <summary>场馆安检会检查随身摄影器材吗？</summary>
+          <div class="answer"><p>南港展览馆按活动类型分级，11 月这场演出公告写明「禁止伸缩镜头与脚架」，手机与卡片机可带入。安检口在 B1 与 1F 各一处，1F 队伍通常短 5 至 8 分钟。</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 08 用户评论 -->
+    <section id="comments" aria-labelledby="comments-h">
+      <div class="section-head">
+        <span class="kicker">08 / 评论</span>
+        <h2 id="comments-h">购票者与现场观众的六种说法</h2>
+      </div>
+      <p class="section-sub">摘自公开贴文与现场受访，语气保留原样，仅做长度整理。</p>
+      <div class="comment-grid">
+        <article class="comment">
+          <header><span class="avatar">李</span><span class="who">Li・台北</span><time class="when" datetime="2026-11-07">11/07 23:12</time></header>
+          <span class="target">南港三版说明</span>
+          <p>全额退费是该给的，但 11 月 3 日那封简讯到现在没人解释。我当天就回信问，客服隔了两天才说是「系统提醒」。</p>
+        </article>
+        <article class="comment">
+          <header><span class="avatar">陈</span><span class="who">Chen・新北</span><time class="when" datetime="2026-11-07">11/07 20:44</time></header>
+          <span class="target">快闪两套号码牌</span>
+          <p>现场白牌绿牌混着排，工作人员自己也说不清。我拿绿牌 137 号，前面白牌 200 多号先进场，这算什么顺序。</p>
+        </article>
+        <article class="comment">
+          <header><span class="avatar">王</span><span class="who">Wang・台中</span><time class="when" datetime="2026-11-06">11/06 22:03</time></header>
+          <span class="target">创作者限时动态</span>
+          <p>nana 说 14:30 才拿到动线图，这点我信，场馆调度本来就拖。但主办方把公告发在 24 小时消失的限时动态，等于没发。</p>
+        </article>
+        <article class="comment">
+          <header><span class="avatar">林</span><span class="who">Lin・台北</span><time class="when" datetime="2026-11-07">11/07 15:38</time></header>
+          <span class="target">限定徽章溢价</span>
+          <p>490 元还是太贵。开卖当天黄牛在门口收 300 元一枚，转手挂 980，现在跌回 490 也只是回到黄牛进货价的两倍不到。</p>
+        </article>
+        <article class="comment">
+          <header><span class="avatar">黄</span><span class="who">Huang・桃园</span><time class="when" datetime="2026-11-06">11/06 19:20</time></header>
+          <span class="target">中山市集摊位数</span>
+          <p>22 摊变 14 摊，说是施工，但施工围篱 10 月底就围起来了，11 月 6 日才通知摊商，时间线对不上。</p>
+        </article>
+        <article class="comment">
+          <header><span class="avatar">周</span><span class="who">Zhou・台北</span><time class="when" datetime="2026-11-07">11/07 10:02</time></header>
+          <span class="target">入场安检动线</span>
+          <p>1F 安检真的快，B1 排了 20 分钟。这条指南有用，但公告没写清楚两处安检口，第一次去的人容易走错。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 09 相关资讯 -->
+    <section id="news" aria-labelledby="news-h">
+      <div class="section-head">
+        <span class="kicker">09 / 资讯</span>
+        <h2 id="news-h">同一批事件的周边进展</h2>
+      </div>
+      <p class="section-sub">与深度解析的事件相关，但落在不同信息层：档期、人流、平台回应。</p>
+      <div class="news-grid">
+        <article class="news">
+          <span class="src">场馆档期</span>
+          <h3>台北小巨蛋 11 月中旬档期出现两次异动</h3>
+          <p>11 月 5 日与 11 月 7 日各调整一次，其中 11 月 14 日的场地由彩排改为技术协调，与南港退票窗口的最后一天重合。</p>
+          <time datetime="2026-11-07">11月7日</time>
+        </article>
+        <article class="news">
+          <span class="src">平台回应</span>
+          <h3>售票平台说明简讯发送名单来源</h3>
+          <p>平台客服 11 月 6 日回复：名单由主办方提供，平台只负责发送，无法代为解释内容。</p>
+          <time datetime="2026-11-06">11月6日</time>
+        </article>
+        <article class="news">
+          <span class="src">人流数据</span>
+          <h3>西门町徒步区 11 月首个周末人流回升</h3>
+          <p>11 月 7 日 15:00 至 18:00 的徒步区人流较 10 月 31 日同段增加约 18%，与快闪取号改线上有关。</p>
+          <time datetime="2026-11-07">11月7日</time>
+        </article>
+        <article class="news">
+          <span class="src">社群整理</span>
+          <h3>一个整理型账号把三版说明做成对照图</h3>
+          <p>11 月 7 日 21:00 发布，四小时内转发超过 2,300 次，图中标注的手续费数字与本页对照表一致。</p>
+          <time datetime="2026-11-07">11月7日</time>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10 热度榜 -->
+    <section id="rank" aria-labelledby="rank-h">
+      <div class="section-head">
+        <span class="kicker">10 / 榜单</span>
+        <h2 id="rank-h">本周话题热度榜（10/29–11/07）</h2>
+      </div>
+      <p class="section-sub">统计口径：公开贴文数、二手成交笔数、场馆周边人流三项加权，满分 100。</p>
+      <div class="rank">
+        <ol>
+          <li><span class="no">1</span><span class="t">南港展演退票争议<span>三版说明、7 位购票者陈述</span></span><span class="score">94</span></li>
+          <li><span class="no">2</span><span class="t">西门町「Nana 映像」快闪取号<span>两套号码牌并行</span></span><span class="score">88</span></li>
+          <li><span class="no">3</span><span class="t">限定徽章二手溢价<span>46 笔成交记录</span></span><span class="score">81</span></li>
+          <li><span class="no">4</span><span class="t">创作者联动回应<span>限时动态与动线图时间点</span></span><span class="score">73</span></li>
+          <li><span class="no">5</span><span class="t">中山市集摊位缩减<span>22 摊降至 14 摊</span></span><span class="score">65</span></li>
+          <li><span class="no">6</span><span class="t">台北小巨蛋档期异动<span>11/14 技术协调</span></span><span class="score">58</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 11 相关推荐 -->
+    <section id="related" aria-labelledby="related-h">
+      <div class="section-head">
+        <span class="kicker">11 / 推荐</span>
+        <h2 id="related-h">顺着这些具体条目继续读</h2>
+      </div>
+      <p class="section-sub">标签对应可检索的事件名、场馆名或规则名。</p>
+      <div class="tags">
+        <a href="/#deep">南港展览馆退票手续费</a>
+        <a href="/#deep">场地档期保留标记</a>
+        <a href="/#updates">西门町快闪线上取号</a>
+        <a href="/#guide">绿牌白牌号码牌</a>
+        <a href="/#featured">限定徽章二手价</a>
+        <a href="/#comments">nana 限时动态说明</a>
+        <a href="/#news">台北小巨蛋档期异动</a>
+        <a href="/#guide">南港展览馆安检口</a>
+        <a href="/#rank">中山市集摊位缩减</a>
+        <a href="/#faq">退票窗口 14 天</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 侧栏 -->
+  <aside aria-label="侧栏导航与快讯">
+    <div class="side-card">
+      <h2>栏目导航</h2>
+      <p class="hint">滚动时自动高亮当前栏目</p>
+      <nav class="side-nav" id="sideNav" aria-label="侧栏栏目导航">
+        <a href="/#overview">现场概览</a>
+        <a href="/#featured">精选追踪</a>
+        <a href="/#updates">即时更新</a>
+        <a href="/#channels">话题入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">看瓜指南</a>
+        <a href="/#faq">常见疑问</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#rank">热度榜</a>
+        <a href="/#related">相关推荐</a>
+      </nav>
+    </div>
+    <div class="side-card">
+      <h2>侧栏快讯</h2>
+      <p class="hint">不进主栏的短条目</p>
+      <div class="side-list">
+        <div><b>11/07 18:30</b>南港展览馆 B1 安检口 18:00 后排队超过 15 分钟。<br><time datetime="2026-11-07">11月7日</time></div>
+        <div><b>11/06 23:30</b>快闪公告只发限时动态，24 小时后消失，截图存档 3 份。<br><time datetime="2026-11-06">11月6日</time></div>
+        <div><b>11/05 16:00</b>台北小巨蛋 11/14 场地用途由彩排改为技术协调。<br><time datetime="2026-11-05">11月5日</time></div>
+        <div><b>11/03 12:00</b>购票者开始收到「演出可能异动」简讯，未注明原因。<br><time datetime="2026-11-03">11月3日</time></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f766e"/><path d="M20 41c6-3 9-3 12 0s6 3 12 0" fill="none" stroke="#fef3c7" stroke-width="5" stroke-linecap="round"/><circle cx="24" cy="26" r="3.5" fill="#fef3c7"/><circle cx="40" cy="26" r="3.5" fill="#fef3c7"/></svg>
+        <strong>今日吃瓜taipei nana</strong>
+      </div>
+      <p class="footer-desc">把台北的展演争议、快闪规则与二手周边价格，整理成按日期可回查的记录。</p>
+    </div>
+    <div class="footer-col">
+      <h3>现场频道</h3>
+      <a href="/#deep">南港展览馆退票争议</a>
+      <a href="/#updates">西门町快闪取号规则</a>
+      <a href="/#rank">限定周边二手溢价</a>
+      <a href="/#news">台北小巨蛋档期异动</a>
+    </div>
+    <div class="footer-col">
+      <h3>阅读与服务</h3>
+      <a href="/#guide">看瓜指南</a>
+      <a href="/#faq">常见疑问</a>
+      <a href="/#comments">用户评论</a>
+      <a href="/#related">相关推荐</a>
+    </div>
+    <div class="footer-col">
+      <h3>数据说明</h3>
+      <p style="font-size:.8rem;color:#a7e3da;line-height:1.7">条目、成交价与人流数据为示例整理，用于说明核对方法；官方说明以主办方与场馆公告原文为准。页面更新时间为 2026-11-08，对应正文「即时更新」与「深度解析」两处核对项。</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 今日吃瓜taipei nana · 台北文娱话题整理</span>
+    <span>信息核对时间 2026-11-08 · 示例数据仅作方法说明</span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "今日吃瓜taipei nana",
+  "description": "台北文娱现场与网络话题记录，梳理展演退票、快闪取号、二手周边与创作者回应。",
+  "inLanguage": "zh-CN",
+  "dateModified": "2026-11-08"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "南港展演的退票手续费现在是多少？",
+      "acceptedAnswer": {"@type": "Answer", "text": "0。11 月 7 日第三版说明写明全额退费，退费申请截止 11 月 21 日，款项承诺 11 月 12 日前完成。"}
+    },
+    {
+      "@type": "Question",
+      "name": "11 月 3 日收到的异动简讯算正式通知吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "不算。那则简讯只写演出可能异动，没有日期与退票方式，售票平台确认名单由主办方提供。正式通知以 11 月 5 日首版公告起算。"}
+    },
+    {
+      "@type": "Question",
+      "name": "西门町快闪的白牌还能用吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "截至 11 月 8 日未见明确公告。现场白牌与绿牌并行，工作人员未说明旧牌是否作废，建议以活动页取号结果为准。"}
+    },
+    {
+      "@type": "Question",
+      "name": "限定徽章二手价还会继续跌吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "46 笔成交显示开卖首日最高 980 元，11 月 7 日挂价中位数 490 元。若没有补货公告，价格可能停在 450 至 520 元区间。"}
+    },
+    {
+      "@type": "Question",
+      "name": "场馆安检会检查随身摄影器材吗？",
+      "acceptedAnswer": {"@type": "Answer", "text": "南港展览馆按活动类型分级，11 月这场演出禁止伸缩镜头与脚架，手机与卡片机可带入。安检口在 B1 与 1F 各一处。"}
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 移动端菜单 */
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('mainNav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.closest('a') && window.matchMedia('(max-width:1024px)').matches){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 站内搜索：本地文本查找 + 无结果反馈 */
+  var input = document.getElementById('siteSearch');
+  var feedback = document.getElementById('searchFeedback');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section'));
+
+  function clearHits(){
+    document.querySelectorAll('.search-hit').forEach(function(el){
+      el.classList.remove('search-hit');
+    });
+  }
+
+  function runSearch(){
+    var q = (input.value || '').trim();
+    clearHits();
+    if(!q){
+      feedback.textContent = '';
+      return;
+    }
+    var hits = [];
+    sections.forEach(function(sec){
+      if(sec.textContent.indexOf(q) !== -1){
+        hits.push(sec);
+      }
+    });
+    if(hits.length === 0){
+      feedback.textContent = '没有找到「' + q + '」，试试场馆名或事件名。';
+      return;
+    }
+    feedback.textContent = '找到 ' + hits.length + ' 个板块';
+    hits.forEach(function(sec){ sec.classList.add('search-hit'); });
+    hits[0].scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(clearHits, 2600);
+  }
+
+  if(input){
+    input.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        runSearch();
+      }
+    });
+    input.addEventListener('input', function(){
+      if(input.value.trim() === ''){ feedback.textContent = ''; clearHits(); }
+    });
+  }
+
+  /* 侧栏滚动高亮 */
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('#sideNav a'));
+  var targets = sideLinks.map(function(a){
+    var id = a.getAttribute('href').replace('/#','');
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  function updateActive(){
+    var pos = window.scrollY + 150;
+    var current = null;
+    targets.forEach(function(el){
+      if(el.offsetTop <= pos){ current = el; }
+    });
+    sideLinks.forEach(function(a){
+      a.classList.toggle('active', current && a.getAttribute('href') === '/#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateActive, {passive:true});
+  window.addEventListener('resize', updateActive);
+  updateActive();
+
+  /* 回到顶部 */
+  var toTop = document.getElementById('toTop');
+  function checkTop(){
+    if(window.scrollY > 480){ toTop.classList.add('show'); }
+    else{ toTop.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', checkTop, {passive:true});
+  checkTop();
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+  </html>
